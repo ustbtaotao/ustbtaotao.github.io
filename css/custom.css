@@ -1,0 +1,185 @@
+@charset "utf-8";
+/* CSS Document */
+
+.dashang {
+    text-align: center;
+    margin-top: 90px;
+    width: 100%;
+    padding: 5px;
+}
+
+.dashang .title {
+    text-align: center;
+    font-size: 16px;
+    color: #e8acac;
+}
+
+.dashang img {
+    display: inline-block;
+    margin: 5px;
+    width: 130px;
+    height: 130px;
+}
+
+.guanzhu {
+    position: absolute;
+    right: 10px;
+    bottom: 2px;
+    padding: 5px;
+}
+
+.guanzhu img {
+    display: inline-block;
+    margin: 5px;
+    width: 130px;
+    height: 130px;
+}
+
+.guanzhu .weixin {
+    width: 200px;
+    display: block;
+    float: left;
+}
+
+.guanzhu .weibo {
+    width: 200px;
+    display: block;
+    float: left;
+}
+
+.sitesearch {
+    z-index: 9990;
+    position: absolute;
+    right: 60px;
+    top: 15px;
+    width: 300px;
+}
+
+.searchresult {
+    background: #ffffff;
+    max-height: 400px;
+    overflow: auto;
+    margin-top: -10px;
+}
+
+@media (max-width: 767px) {
+    .sitesearch {
+        z-index: 9990;
+        position: absolute;
+        right: 60px;
+        top: 15px;
+        width: 200px;
+    }
+
+    .guanzhu {
+        padding: 5px;
+        position: relative;
+    }
+
+    footer {
+        height: auto;
+    }
+}
+
+#rocket-to-top div {
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 149px;
+}
+
+#rocket-to-top .level-2 {
+    background: url("../img/rocket_button_up.png") no-repeat scroll -149px 0 transparent;
+    display: none;
+    height: 250px;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+#rocket-to-top .level-3 {
+    background: none repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    height: 150px;
+    z-index: 2;
+}
+
+#rocket-to-top {
+    background: url("../img/rocket_button_up.png") no-repeat scroll 0 0 transparent;
+    cursor: default;
+    display: block;
+    height: 250px;
+    margin: -125px 0 0;
+    overflow: hidden;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 80%;
+    width: 149px;
+    z-index: 11;
+}
+
+.qmenu {
+    padding-left: 15px;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+    background: #313131;
+    color: #bda391;
+    padding: 5px;
+    opacity: 0.88;
+}
+.qmenu::-webkit-scrollbar
+{
+    width: 8px;
+    height: 12px;
+    background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+.qmenu::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+.qmenu::-webkit-scrollbar-thumb
+{
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #999999;
+}
+.contenttitle {
+    cursor: pointer;
+    padding-left: 15px;
+}
+.contenttitle:hover{
+    background: #bd9180;
+    color:#FFFFFF
+}
+.new {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    display: block;
+    top: 10px;
+    left: -20px;
+    z-index: -2;
+}
+.cloudcomment{
+    display: block;
+    float: left;
+    width: 100%;
+}
+.txt-right{
+  display: none;
+}

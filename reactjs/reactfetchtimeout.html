@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <title>
+        
+        react项目中如何设置fetch超时 |
+        
+        i咖啡</title>
+    <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="generator" content="i咖啡">
+    <meta name="author" content="ustbtaotao">
+    
+    <meta name="keywords" content="reactjs,fetch,超时,react+redux+router+webpack">
+    
+    
+    <meta name="description" content="react项目中如何设置fetch超时,基于es6">
+    
+    <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
+    <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href=" /atom.xml "
+          title="i咖啡" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css"/>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <script src="/js/search.js"></script>
+    <![endif]-->
+
+    
+    
+    
+    <style>.col-md-8.col-md-offset-2.opening-statement img {
+            display: none;
+        }</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+<!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling" xmlns="http://www.w3.org/1999/html"
+ style="background-color: rgba(21, 21, 21, 0.88);"
+>
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+        <img src="/img/close.png" alt="Close"/>
+    </div>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu">
+        <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+        <li><a href="/archives" class="animsition-link" title="archive">所有文章</a>
+        </li>
+        <!-- Dropdown Menu -->
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">按分类<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/categories/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/categories/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/categories/javascript/" class="animsition-link">javascript
+                        <small>(6)</small>
+                    </a></li>
+                
+                <li><a href="/categories/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/categories/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/categories/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/categories/nodejs/" class="animsition-link">nodejs
+                        <small>(18)</small>
+                    </a></li>
+                
+                <li><a href="/categories/reactjs/" class="animsition-link">reactjs
+                        <small>(25)</small>
+                    </a></li>
+                
+                <li><a href="/categories/svn/" class="animsition-link">svn
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/other/" class="animsition-link">其他
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu" id="tabs">按标签<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/tags/reactjs/" class="animsition-link">reactjs
+                        <small>(26)</small>
+                    </a></li>
+                
+                <li><a href="/tags/component/" class="animsition-link">组件
+                        <small>(5)</small>
+                    </a></li>
+                
+                <li><a href="/tags/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/other/" class="animsition-link">其他
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/tags/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(21)</small>
+                    </a></li>
+                
+                <li><a href="/tags/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/tags/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/tags/nodejs/" class="animsition-link">nodejs
+                        <small>(19)</small>
+                    </a></li>
+                
+                <li><a href="/tags/highchart/" class="animsition-link">highchart
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/jquery/" class="animsition-link">jquery
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/webpack/" class="animsition-link">webpack
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/svn/" class="animsition-link">svn
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">友情链接<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="http://tool.chinaz.com/" target="_blank" >站长工具</a></li>
+                
+                <li><a href="http://www.weishao.com.cn/" target="_blank" >锐捷网络_微哨</a></li>
+                
+                <li><a href=" http://www.pangshunlong.com/" target="_blank" >庞顺龙的博客</a></li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu secondary">
+        <li><a href="http://www.icafebolger.comabout.html" class="animsition-link" title="about">About</a></li>
+        <li style="display: none;"><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+    </ul>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+    <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+    <div id="navigation" class="navbar navbar-fixed-top">
+        <div id="site_search" class="sitesearch">
+            <div class="form-group">
+                <input type="text" id="local-search-input" name="q" results="0" placeholder="search"
+                       class="st-search-input st-default-search-input form-control"/>
+            </div>
+            <div id="local-search-result" class="searchresult"></div>
+        </div>
+        <div class="navbar-inner" style="background-color: #e8acac;">
+            <div class="container">
+                <!-- Nav logo -->
+                <div class="logo">
+                    <a href="/" title="Logo" class="animsition-link">
+                        
+                        <img src="/img/logo.png" alt="Logo" width="35px;"/>
+                        
+                    </a>
+                </div>
+                <!-- // Nav logo -->
+                <!-- Info-bar -->
+                <nav>
+                    <ul class="nav">
+                        <li><a href="/" class="animsition-link" style="color: #ffffff;">i咖啡</a></li>
+                        
+                        
+                        <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank" style="color: #ffffff;"><i
+                                        class="icon-sina-weibo" style="color: #ffffff;"></i>微博</a></li>
+                        
+                        <li class="nolink" style="color: #ffffff;"><span>Welcome!</span></li>
+                    </ul>
+                </nav>
+                <!--// Info-bar -->
+            </div>
+            <!-- // .container -->
+            <div class="learnmore sb-toggle-right" style="display: none;">More</div>
+            <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+            </button>
+        </div>
+        <!-- // .navbar-inner -->
+    </div>
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+
+
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+                <span class="post-meta">
+      <time datetime="2017-06-15T00:48:43.000Z" itemprop="datePublished">
+          2017-06-15
+      </time>
+    
+    
+    
+    | 
+    <a href='/tags/reactjs/'>reactjs</a>,
+    
+    <a href='/tags/javascript/'>javascript</a>
+    
+    
+    <br />
+    字数:<span class="post-count">640</span>
+</span>
+                阅读数:
+                <span id="/reactjs/reactfetchtimeout.html" data_time="Thu Jun 15 2017 08:48:43 GMT+0800" class="leancloud_visitors" data-flag-title="react项目中如何设置fetch超时"></span>次
+                
+                <h1>react项目中如何设置fetch超时</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="bshare-custom" style="float: right;">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div style="margin-top: 10px;" id="content">
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>在<a href="/reactjs/reactfetch.html">上一篇</a>我们讲到了,在react项目如何利用fetch进行网络请求,获取<br>我们想要的网络资源,但是有个细节上的问题,有时候网络环境特别查的时候,比如2g环境下,请求就不那么顺畅了,<br>如果没有超时设置包括友好提示的话,应用或者服务很有可能会被用户吐槽。但是用过<a href="https://www.npmjs.com/package/isomorphic-fetch" target="_blank" rel="noopener">fetch</a>的<br>童鞋都知道,它不像<a href="https://www.npmjs.com/package/superagent" target="_blank" rel="noopener">superagent</a> 可以直接设计timeout,那怎么办呢?<br>两种方案:</p>
+<ul>
+<li>抛弃fetch,用superagent<br>问题是如果是刚开始写,那没问题,但如果是项目已经成熟了,并存在了很久,小伙伴们都已经熟练上手了,这时候尤其是项目紧的时候还是三思;</li>
+<li>follow me</li>
+</ul>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>回顾下之前的源码 get为例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">function fetchList(dispatch) &#123;</span><br><span class="line">  return fetch(&apos;/api/list&apos;)</span><br><span class="line">    .then((response) =&gt; response.json())</span><br><span class="line">    .then((json) =&gt; &#123;</span><br><span class="line">      let hasError = false;</span><br><span class="line">      let text = &apos;&apos;;</span><br><span class="line">      </span><br><span class="line">      /// /api/list正常返回格式&#123;errcode:0,errmsg:&apos;&apos;,data:[]&#125;</span><br><span class="line">      if (json.errcode !== 0) &#123;</span><br><span class="line">        hasError = true;</span><br><span class="line">        text = json.errmsg;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        hasError = false;</span><br><span class="line">        text = &apos;&apos;;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      // 网络异常 如断网</span><br><span class="line">      if (json.error) &#123;</span><br><span class="line">        dispatch(list(&#123;</span><br><span class="line">          msg: strings.NET_ERROR, </span><br><span class="line">          data: []</span><br><span class="line">        &#125;));</span><br><span class="line">      &#125;</span><br><span class="line">      // 正常业务处理 </span><br><span class="line">      else &#123;</span><br><span class="line">        dispatch(list(&#123;</span><br><span class="line">          msg: hasError ? text : &apos;&apos;,</span><br><span class="line">          data: hasError ? [] : json.data</span><br><span class="line">        &#125;));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    // 异常处理</span><br><span class="line">    .catch((err) =&gt; &#123;</span><br><span class="line">      dispatch(list(&#123;</span><br><span class="line">        msg: (__DEBUG__ &amp;&amp; err.message) ? err.message : strings.NET_ERROR,</span><br><span class="line">        data: []</span><br><span class="line">      &#125;));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们只有网络异常包括断网处理,今天我们补上timeout,我们利用promise的race函数,即我们逗乐说的赛跑函数<br>来实现它,思路就是让fetch和timeout_callback俩赛跑,谁快输出谁,比如我们设置为4s,到4s了正常的fetch还没回来,<br>那不好意思timeout赢了,这样我们就投机的实现了fetch的超时请求处理。当然有人会问,timeout后fetch还会执行么?<br>答案是会,但是resolve不在处理了,抛弃了。</p>
+<ul>
+<li>为了更加的方便调用我们新建一个reduxHeper.js类</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function _fetch(url, timeout) &#123;</span><br><span class="line">  var abort_fn = null;</span><br><span class="line">  var fetch_promise = fetch(url);</span><br><span class="line">  var abort_promise = new Promise(function (resolve, reject) &#123;</span><br><span class="line">    abort_fn = function () &#123;</span><br><span class="line">      reject(&#123;message: &apos;网络超时&apos;&#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">  var abortable_promise = Promise.race([fetch_promise, abort_promise]);</span><br><span class="line">  setTimeout(function () &#123;</span><br><span class="line">    abort_fn();</span><br><span class="line">  &#125;, timeout);</span><br><span class="line"></span><br><span class="line">  return abortable_promise;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports = module.exports = &#123;</span><br><span class="line">  _fetch: _fetch</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码核心就是 <code>Promise.race([fetch_promise, abort_promise])</code> 其中<br> <code>fetch_promise</code>就是正常fetch函数,<code>abort_promise</code> 是我们的超时服务,到点了我们会reject一个<code>message</code><br> 网络超时</p>
+<ul>
+<li>引用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;_fetch&#125; from &apos;../reduxHelper’;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_fetch(url,4000) // 设置timeout为4s 改造后</span><br><span class="line">fetch(url)       // 改造前</span><br></pre></td></tr></table></figure>
+<p>是不是很简单。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>亲测好使</p>
+
+                <div style="margin-top:15px;">
+                   <hr class="nogutter">
+                   <h3>^-^欢迎回复交流^-^</h3>
+                    <div id="comment" class='cloudcomment'></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+            <div class="bshare-custom" style="float: right;margin-bottom: 10px">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div class="dashang">
+                <div class="title">赏点咖啡钱^.^</div>
+                <img src="/img/wchat.jpeg"/><img src="/img/zhifubao.png"/>
+            </div>
+            <div style="display: none;" id="rocket-to-top">
+                <div style="opacity:0.3;display: block;" class="level-2"></div>
+                <div class="level-3"></div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/reactjs/reacthighchart1.html" style="float: left;">
+        ← react图表highchart实践_柱状图
+    </a>
+    
+    
+    <a class="pull-right" href="/html/htmlbtn.html">
+        如何自定义button样式 →
+    </a>
+    
+</nav>
+
+    </div>
+</section>
+
+<div id="qMenu" class="qmenu">
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true" onclick="javacript:void(0);$('#qMenu').hide();">
+        <img src="/img/close.png" alt="Close">
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+<script src="../../js/av-min.js"></script>
+<script src="../../js/Valine.min.js"></script>
+<script src=''></script>
+<script type="text/javascript">
+    //// 小火箭
+    $(function () {
+        var e = $("#rocket-to-top"),
+                t = $(document).scrollTop(),
+                n,
+                r,
+                i = !0;
+        $(window).scroll(function () {
+            var t = $(document).scrollTop();
+            t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
+                        marginTop: "-1000px"
+                    },
+                    "normal",
+                    function () {
+                        e.css({
+                            "margin-top": "-125px",
+                            display: "none"
+                        }),
+                                i = !0
+                    })) : e.fadeIn("slow")
+        }),
+                e.hover(function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 1
+                            })
+                        },
+                        function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 0
+                            })
+                        }),
+                $(".level-3").click(function () {
+                    function t() {
+                        var t = e.css("background-position");
+                        if (e.css("display") == "none" || i == 0) {
+                            clearInterval(n),
+                                    e.css("background-position", "0px 0px");
+                            return
+                        }
+                        switch (t) {
+                            case "0px 0px":
+                                e.css("background-position", "-298px 0px");
+                                break;
+                            case "-298px 0px":
+                                e.css("background-position", "-447px 0px");
+                                break;
+                            case "-447px 0px":
+                                e.css("background-position", "-596px 0px");
+                                break;
+                            case "-596px 0px":
+                                e.css("background-position", "-745px 0px");
+                                break;
+                            case "-745px 0px":
+                                e.css("background-position", "-298px 0px");
+                        }
+                    }
+
+                    if (!i) return;
+                    n = setInterval(t, 50),
+                            $("html,body").animate({scrollTop: 0}, "slow");
+                });
+    });
+
+
+    //// a 标签新页面打开
+    $("#content a").each(function () {
+        $(this).attr('target','_blank');
+        $(this).attr('style','color:#203ada;');
+    })
+
+</script>
+<script type="text/javascript">
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false,   
+        appId: 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz',
+        appKey: 'Itbf11QmS5FNnX7UzEy72OQe',
+        placeholder: 'just go go',
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    //// 生成目录
+    function go(title) {
+        var top = $("#" + title).offset().top;
+        $(document).scrollTop(top - 60);
+    }
+    ;
+    var system = {
+        win: false,
+        mac: false,
+        xll: false,
+        ipad: false
+    };
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+    if ((system.win || system.mac || system.xll || system.ipad)) {
+        //document.writeln('PC')
+        $(function () {
+            var qMenu = '';
+            var title = '';
+            var obj;
+            $('#content').find('h2').each(function (index, item) {
+                obj = $(this).find('a.headerlink').eq(0);
+                title = obj.attr('title');
+                qMenu += '<div class="contenttitle" data="title" onclick="go(\'' + title + '\')">' + index + '、' + title + '</div>';
+            })
+            if (qMenu.length > 0) {
+                qMenu = ' <div><span>目录</span>' + qMenu + '</div>';
+                $('#qMenu').append($(qMenu));
+            }else {
+                $('#qMenu').remove();
+            }
+        });
+    } else {
+        $('#qMenu').remove();
+    }
+</script>
+
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+        <div class="copy">
+            <p>
+                &copy; 2017
+                <script>new Date().getFullYear() > 2010 && document.write("-" + new Date().getFullYear());</script>
+                , Content By ustbtaotao. All Rights Reserved.
+            </p>
+            <p>welcome to U &nbsp;&nbsp;&nbsp;&nbsp;i咖啡小屋里的咖啡被品尝<span style="color: red" id="totalcount">--</span>次</p>
+            <div class="guanzhu">
+                <div class="weixin">
+                    <span>关注微信</span>
+                    <img src="/img/weixin.jpg"/>
+                </div>
+                <div class="weibo">
+                    <span>关注微博</span>
+                    <img src="/img/weibo.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="social">
+            <ul>
+                
+                
+                
+                
+                
+                <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;
+                </li>
+                
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16ff0b4e8ca51c0734eb447a23473b9f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?65e3e0b08038c3bdc07ecf223a4ae231";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+<!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+                window1 = $(window);
+        hero.css({
+            "height": window1.height() - 300
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<script src="/js/search.js"></script>
+<script src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+<script type="text/javascript">
+    $('#intro').find('img').each(function () {
+        var alt = this.alt;
+
+        if (alt) {
+            $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+        }
+
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+    });
+    jQuery(document).ready(function () {
+        jQuery('.fancybox').fancybox();
+    })
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        (function () {
+            console.log('font');
+            var getCss = function (path) {
+                var head = document.getElementsByTagName('head')[0];
+                link = document.createElement('link');
+                link.href = path;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                head.appendChild(link);
+            };
+            getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+            getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+        })();
+        $('.flexslider').flexslider({
+            animation: "fade",
+            prevText: "",
+            nextText: "",
+            directionNav: true
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    var search_path = "db.json";
+    if (search_path.length == 0) {
+        search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $("#local-search-input").keydown(function (event) {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            searchFunc(path, 'local-search-input', 'local-search-result');
+        }
+    });
+    $("#local-search-input").keyup(function (event) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+    });
+    $("#navigation").click(function () {
+        $("#local-search-result").html('');
+        $("#local-search-result").hide();
+        $("#local-search-input").val('');
+    })
+</script>
+
+
+<!--统计-->
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script>
+    var APP_ID = 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz';
+    var APP_KEY = 'Itbf11QmS5FNnX7UzEy72OQe';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter) {
+        var query = new AV.Query("Counter");
+        if ($(".leancloud_visitors").length > 0) {
+            var url = $(".leancloud_visitors").attr('id').trim();
+            var postdate = $(".leancloud_visitors").attr('data_time').trim();
+            var time = new Date(postdate).getTime();
+            var init = 99;
+            if (time + 7 * 24 * 3600 * 1000 > new Date().getTime()) {
+                init = 1;
+            }
+            query.equalTo("words", url);
+            query.count().then(function (number) {
+                // There are number instances of MyClass.
+                $(document.getElementById(url)).text(number && !isNaN(number) ? init + number : '--');
+            }, function (error) {
+                // error is an instance of AVError.
+            });
+        }
+        query = new AV.Query("Counter");
+        query.count().then(function (number) {
+            // There are number instances of MyClass.
+            $(document.getElementById('totalcount')).text(number && !isNaN(number) ? 2220 + number : '--');
+        }, function (error) {
+            // error is an instance of AVError.
+        });
+    }
+
+    function addCount(Counter) {
+        var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'icafebolger.com';
+        var Counter = AV.Object.extend("Counter");
+        var query = new Counter;
+        query.save({
+            words: url
+        }).then(function (object) {
+
+        })
+    }
+    $(function () {
+        var Counter = AV.Object.extend("Counter");
+        addCount(Counter);
+        showTime(Counter);
+    });
+</script>
+</body>
+</html>

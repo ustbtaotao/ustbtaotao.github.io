@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <title>
+        
+        nodejs api实现数字签名验证 |
+        
+        i咖啡</title>
+    <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="generator" content="i咖啡">
+    <meta name="author" content="ustbtaotao">
+    
+    <meta name="keywords" content="nodejs,javascript,数字签名,安全校验">
+    
+    
+    <meta name="description" content="接口api实现数字签名验证">
+    
+    <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
+    <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href=" /atom.xml "
+          title="i咖啡" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css"/>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <script src="/js/search.js"></script>
+    <![endif]-->
+
+    
+    
+    
+    <style>.col-md-8.col-md-offset-2.opening-statement img {
+            display: none;
+        }</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+<!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling" xmlns="http://www.w3.org/1999/html"
+ style="background-color: rgba(21, 21, 21, 0.88);"
+>
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+        <img src="/img/close.png" alt="Close"/>
+    </div>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu">
+        <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+        <li><a href="/archives" class="animsition-link" title="archive">所有文章</a>
+        </li>
+        <!-- Dropdown Menu -->
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">按分类<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/categories/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/categories/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/categories/javascript/" class="animsition-link">javascript
+                        <small>(6)</small>
+                    </a></li>
+                
+                <li><a href="/categories/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/categories/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/categories/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/categories/nodejs/" class="animsition-link">nodejs
+                        <small>(18)</small>
+                    </a></li>
+                
+                <li><a href="/categories/reactjs/" class="animsition-link">reactjs
+                        <small>(25)</small>
+                    </a></li>
+                
+                <li><a href="/categories/svn/" class="animsition-link">svn
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/other/" class="animsition-link">其他
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu" id="tabs">按标签<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/tags/reactjs/" class="animsition-link">reactjs
+                        <small>(26)</small>
+                    </a></li>
+                
+                <li><a href="/tags/component/" class="animsition-link">组件
+                        <small>(5)</small>
+                    </a></li>
+                
+                <li><a href="/tags/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/other/" class="animsition-link">其他
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/tags/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(21)</small>
+                    </a></li>
+                
+                <li><a href="/tags/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/tags/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/tags/nodejs/" class="animsition-link">nodejs
+                        <small>(19)</small>
+                    </a></li>
+                
+                <li><a href="/tags/highchart/" class="animsition-link">highchart
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/jquery/" class="animsition-link">jquery
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/webpack/" class="animsition-link">webpack
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/svn/" class="animsition-link">svn
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">友情链接<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="http://tool.chinaz.com/" target="_blank" >站长工具</a></li>
+                
+                <li><a href="http://www.weishao.com.cn/" target="_blank" >锐捷网络_微哨</a></li>
+                
+                <li><a href=" http://www.pangshunlong.com/" target="_blank" >庞顺龙的博客</a></li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu secondary">
+        <li><a href="http://www.icafebolger.comabout.html" class="animsition-link" title="about">About</a></li>
+        <li style="display: none;"><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+    </ul>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+    <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+    <div id="navigation" class="navbar navbar-fixed-top">
+        <div id="site_search" class="sitesearch">
+            <div class="form-group">
+                <input type="text" id="local-search-input" name="q" results="0" placeholder="search"
+                       class="st-search-input st-default-search-input form-control"/>
+            </div>
+            <div id="local-search-result" class="searchresult"></div>
+        </div>
+        <div class="navbar-inner" style="background-color: #e8acac;">
+            <div class="container">
+                <!-- Nav logo -->
+                <div class="logo">
+                    <a href="/" title="Logo" class="animsition-link">
+                        
+                        <img src="/img/logo.png" alt="Logo" width="35px;"/>
+                        
+                    </a>
+                </div>
+                <!-- // Nav logo -->
+                <!-- Info-bar -->
+                <nav>
+                    <ul class="nav">
+                        <li><a href="/" class="animsition-link" style="color: #ffffff;">i咖啡</a></li>
+                        
+                        
+                        <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank" style="color: #ffffff;"><i
+                                        class="icon-sina-weibo" style="color: #ffffff;"></i>微博</a></li>
+                        
+                        <li class="nolink" style="color: #ffffff;"><span>Welcome!</span></li>
+                    </ul>
+                </nav>
+                <!--// Info-bar -->
+            </div>
+            <!-- // .container -->
+            <div class="learnmore sb-toggle-right" style="display: none;">More</div>
+            <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+            </button>
+        </div>
+        <!-- // .navbar-inner -->
+    </div>
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+
+
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+                <span class="post-meta">
+      <time datetime="2018-05-02T07:50:40.000Z" itemprop="datePublished">
+          2018-05-02
+      </time>
+    
+    
+    
+    | 
+    <a href='/tags/javascript/'>javascript</a>,
+    
+    <a href='/tags/nodejs/'>nodejs</a>
+    
+    
+    <br />
+    字数:<span class="post-count">1,007</span>
+</span>
+                阅读数:
+                <span id="/nodejs/nodeapipassportdigital.html" data_time="Wed May 02 2018 15:50:40 GMT+0800" class="leancloud_visitors" data-flag-title="nodejs api实现数字签名验证"></span>次
+                
+                <h1>nodejs api实现数字签名验证</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="bshare-custom" style="float: right;">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div style="margin-top: 10px;" id="content">
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>nodejs作为服务端api开发语言已经不是什么稀奇的事情了，今天分享的不是怎么利用express<br>进行api封装，而是怎么利用middleware中间件对api接口进行签名验证。为什么要做签名验证，<br>原因很简单就是为了安全。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>大家都知道express route可以很灵活的加入一些中间件包括我们自定义的，今天要实现的数字签名<br>验证需要依赖<a href="https://www.npmjs.com/package/passport-digital-signature" target="_blank" rel="noopener">passport-digital-signature</a>进行二次开发。<br>签名逻辑说明：对每个api请求必须要求传入时间戳timestamp、keyId和数字签名值sign。其中<br>sign签名规则为：</p>
+<h3 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h3><p>设所有发送或者接收到的数据为集合M，将集合M内非空参数值的参数按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&amp;key2=value2…）拼接成字符串stringA。<br>特别注意以下重要规则：</p>
+<p>参数名按ASCII码从小到大排序（字典序）；<br>如果参数的值为空不参与传参和签名；<br>参数名区分大小写；<br>get 和 post 参数均参与签名（注意：签名时不要对 get 和 post 的参数进行urlencode）；<br>sign 参数不参与签名；<br>根据HTTP协议要求，传递参数的值中如果存在特殊字符（如：&amp;、@等），那么该值需要做URL Encoding，这样请求接收方才能接收到正确的参数值。这种情况下，待签名数据应该是原始值而不是encoding之后的值。例如：调用某接口需要对请求参数email进行数字签名，那么待签名数据应该是<a href="mailto:email=test@msn.com" target="_blank" rel="noopener">email=test@msn.com</a>，而不是email=test%40msn.com。</p>
+<h3 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h3><p>在stringA最后拼接上“&amp;key=AppSecret”得到stringSignTemp字符串，并对stringSignTemp进行MD5运算，再将得到的字符串所有字符转换为大写，得到sign值。</p>
+<h3 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h3><p>拼接sign签名，得到最终请求字符串。</p>
+<p>具体实现步骤：</p>
+<ul>
+<li>1、npm install passport-digital-signature</li>
+<li>2、修改passport-digital-signature签名逻辑<br> 进入passport-digital-signature/lib目录,打开strategy.js，实现签名和签名验证规则,核心方法：<br> 2.1、param排序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 获取参数字符串 ascall码排序</span><br><span class="line">*/</span><br><span class="line">function getVerifyParams(params) &#123;</span><br><span class="line"> var sPara = [];</span><br><span class="line"> if(!params) return null;</span><br><span class="line"> for(var key in params) &#123;</span><br><span class="line">   if((!params[key]) || key == &quot;sign&quot;) &#123;</span><br><span class="line">     continue;</span><br><span class="line">   &#125;;</span><br><span class="line">   sPara.push([key, params[key]]);</span><br><span class="line"> &#125;</span><br><span class="line"> sPara = sPara.sort();</span><br><span class="line"> var prestr = &apos;&apos;;</span><br><span class="line"> for(var i2 = 0; i2 &lt; sPara.length; i2++) &#123;</span><br><span class="line">   var obj = sPara[i2];</span><br><span class="line">   if(i2 == sPara.length - 1) &#123;</span><br><span class="line">     prestr = prestr + obj[0] + &apos;=&apos; + obj[1] + &apos;&apos;;</span><br><span class="line">   &#125; else &#123;</span><br><span class="line">     prestr = prestr + obj[0] + &apos;=&apos; + obj[1] + &apos;&amp;&apos;;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> prestr += &apos;&amp;key=&apos;+params.keyId;</span><br><span class="line"> return prestr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>2.2、生成签名</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 获取签名</span><br><span class="line">*/</span><br><span class="line">function getSign(data)&#123;</span><br><span class="line">  if (data &amp;&amp; data.length &gt; 0) &#123;</span><br><span class="line">      var buf = new Buffer(data);</span><br><span class="line">      var str = buf.toString(&apos;binary&apos;);</span><br><span class="line">      let md5Str = crypto.createHash(&apos;md5&apos;).update(str).digest(&apos;hex&apos;);</span><br><span class="line">      return md5Str.toUpperCase();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.3 overwrite authenticate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Authenticate request based on the contents of a form submission.</span><br><span class="line"> *</span><br><span class="line"> * @param &#123;Object&#125; request</span><br><span class="line"> * @api protected</span><br><span class="line"> */</span><br><span class="line"> Strategy.prototype.authenticate = function(req, options) &#123;</span><br><span class="line">   //时间戳timestamp、keyId和数字签名值sign 三个参数必传 </span><br><span class="line">  if (!req.query || !req.query.sign || !req.query.timestamp || !req.query.keyId) &#123;</span><br><span class="line">    return this.fail2(1005);</span><br><span class="line">  &#125;</span><br><span class="line">  var timestamp = req.query.timestamp;</span><br><span class="line">  var now = new Date().getTime();</span><br><span class="line">  //timestamp 必须是10位或者13位</span><br><span class="line">  if(timestamp.length != 10 &amp;&amp; timestamp.length != 13)&#123;</span><br><span class="line">    return this.fail2(1001);</span><br><span class="line">  &#125;else if(timestamp.length == 10)&#123;</span><br><span class="line">    timestamp = timestamp * 1000;</span><br><span class="line">  &#125;</span><br><span class="line">  let grap = now - timestamp ;</span><br><span class="line">  //timestamp 3分钟内有效</span><br><span class="line">  if(grap &gt; 3 * 60 * 1000 || grap &lt;＝ 0)&#123;</span><br><span class="line">    return this.fail2(1001);</span><br><span class="line">  &#125;</span><br><span class="line">  var appkey = req.query.keyId;</span><br><span class="line">  var params = req.query;</span><br><span class="line">  var self = this;</span><br><span class="line"></span><br><span class="line">  function verified(err, client) &#123;</span><br><span class="line">    if (err) &#123; return self.fail2(-1); &#125;</span><br><span class="line">    // keyId不存在</span><br><span class="line">    if (!client) &#123; return self.fail2(1006); &#125;</span><br><span class="line">    // 获取排序参数</span><br><span class="line">    params = getVerifyParams(params);</span><br><span class="line">    // 获取正确签名</span><br><span class="line">    var signVerfied = getSign(params);</span><br><span class="line">    var sign = req.query.sign;</span><br><span class="line">    var flag = false;</span><br><span class="line">    flag = verifySign(signVerfied,sign);</span><br><span class="line">    if(!flag)&#123;</span><br><span class="line">      return self.fail2(1002);</span><br><span class="line">    &#125;</span><br><span class="line">    self.pass();</span><br><span class="line">  &#125;</span><br><span class="line">  if (self._passReqToCallback) &#123;</span><br><span class="line">    this._verify(req, appkey, verified);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    this._verify(appkey, verified);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3、api router注册</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const DigitalSignatureStrategy =require(&apos;passport-digital-signature&apos;).Strategy;</span><br><span class="line">// 验证keyId是否有效</span><br><span class="line">const digitalSignature = require(&apos;./middleware/checkClient&apos;);    </span><br><span class="line">passport.use(new DigitalSignatureStrategy(digitalSignature))；</span><br><span class="line">app.use(&apos;/openapi&apos;, passport.authenticate(&apos;digital-signature&apos;), yourRoute);</span><br></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><img src="/image/nodejs/digit1.jpeg" alt="digit1"><br><img src="/image/nodejs/digit2.jpeg" alt="digit2"><br><img src="/image/nodejs/digit3.jpeg" alt="digit3"></p>
+
+                <div style="margin-top:15px;">
+                   <hr class="nogutter">
+                   <h3>^-^欢迎回复交流^-^</h3>
+                    <div id="comment" class='cloudcomment'></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+            <div class="bshare-custom" style="float: right;margin-bottom: 10px">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div class="dashang">
+                <div class="title">赏点咖啡钱^.^</div>
+                <img src="/img/wchat.jpeg"/><img src="/img/zhifubao.png"/>
+            </div>
+            <div style="display: none;" id="rocket-to-top">
+                <div style="opacity:0.3;display: block;" class="level-2"></div>
+                <div class="level-3"></div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/nodejs/nodejstimeout.html" style="float: left;">
+        ← nodejs timeout
+    </a>
+    
+    
+    <a class="pull-right" href="/kettle/kettle4.html">
+        kettle实现异构数据同步(四) →
+    </a>
+    
+</nav>
+
+    </div>
+</section>
+
+<div id="qMenu" class="qmenu">
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true" onclick="javacript:void(0);$('#qMenu').hide();">
+        <img src="/img/close.png" alt="Close">
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+<script src="../../js/av-min.js"></script>
+<script src="../../js/Valine.min.js"></script>
+<script src=''></script>
+<script type="text/javascript">
+    //// 小火箭
+    $(function () {
+        var e = $("#rocket-to-top"),
+                t = $(document).scrollTop(),
+                n,
+                r,
+                i = !0;
+        $(window).scroll(function () {
+            var t = $(document).scrollTop();
+            t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
+                        marginTop: "-1000px"
+                    },
+                    "normal",
+                    function () {
+                        e.css({
+                            "margin-top": "-125px",
+                            display: "none"
+                        }),
+                                i = !0
+                    })) : e.fadeIn("slow")
+        }),
+                e.hover(function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 1
+                            })
+                        },
+                        function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 0
+                            })
+                        }),
+                $(".level-3").click(function () {
+                    function t() {
+                        var t = e.css("background-position");
+                        if (e.css("display") == "none" || i == 0) {
+                            clearInterval(n),
+                                    e.css("background-position", "0px 0px");
+                            return
+                        }
+                        switch (t) {
+                            case "0px 0px":
+                                e.css("background-position", "-298px 0px");
+                                break;
+                            case "-298px 0px":
+                                e.css("background-position", "-447px 0px");
+                                break;
+                            case "-447px 0px":
+                                e.css("background-position", "-596px 0px");
+                                break;
+                            case "-596px 0px":
+                                e.css("background-position", "-745px 0px");
+                                break;
+                            case "-745px 0px":
+                                e.css("background-position", "-298px 0px");
+                        }
+                    }
+
+                    if (!i) return;
+                    n = setInterval(t, 50),
+                            $("html,body").animate({scrollTop: 0}, "slow");
+                });
+    });
+
+
+    //// a 标签新页面打开
+    $("#content a").each(function () {
+        $(this).attr('target','_blank');
+        $(this).attr('style','color:#203ada;');
+    })
+
+</script>
+<script type="text/javascript">
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false,   
+        appId: 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz',
+        appKey: 'Itbf11QmS5FNnX7UzEy72OQe',
+        placeholder: 'just go go',
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    //// 生成目录
+    function go(title) {
+        var top = $("#" + title).offset().top;
+        $(document).scrollTop(top - 60);
+    }
+    ;
+    var system = {
+        win: false,
+        mac: false,
+        xll: false,
+        ipad: false
+    };
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+    if ((system.win || system.mac || system.xll || system.ipad)) {
+        //document.writeln('PC')
+        $(function () {
+            var qMenu = '';
+            var title = '';
+            var obj;
+            $('#content').find('h2').each(function (index, item) {
+                obj = $(this).find('a.headerlink').eq(0);
+                title = obj.attr('title');
+                qMenu += '<div class="contenttitle" data="title" onclick="go(\'' + title + '\')">' + index + '、' + title + '</div>';
+            })
+            if (qMenu.length > 0) {
+                qMenu = ' <div><span>目录</span>' + qMenu + '</div>';
+                $('#qMenu').append($(qMenu));
+            }else {
+                $('#qMenu').remove();
+            }
+        });
+    } else {
+        $('#qMenu').remove();
+    }
+</script>
+
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+        <div class="copy">
+            <p>
+                &copy; 2017
+                <script>new Date().getFullYear() > 2010 && document.write("-" + new Date().getFullYear());</script>
+                , Content By ustbtaotao. All Rights Reserved.
+            </p>
+            <p>welcome to U &nbsp;&nbsp;&nbsp;&nbsp;i咖啡小屋里的咖啡被品尝<span style="color: red" id="totalcount">--</span>次</p>
+            <div class="guanzhu">
+                <div class="weixin">
+                    <span>关注微信</span>
+                    <img src="/img/weixin.jpg"/>
+                </div>
+                <div class="weibo">
+                    <span>关注微博</span>
+                    <img src="/img/weibo.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="social">
+            <ul>
+                
+                
+                
+                
+                
+                <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;
+                </li>
+                
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16ff0b4e8ca51c0734eb447a23473b9f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?65e3e0b08038c3bdc07ecf223a4ae231";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+<!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+                window1 = $(window);
+        hero.css({
+            "height": window1.height() - 300
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<script src="/js/search.js"></script>
+<script src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+<script type="text/javascript">
+    $('#intro').find('img').each(function () {
+        var alt = this.alt;
+
+        if (alt) {
+            $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+        }
+
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+    });
+    jQuery(document).ready(function () {
+        jQuery('.fancybox').fancybox();
+    })
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        (function () {
+            console.log('font');
+            var getCss = function (path) {
+                var head = document.getElementsByTagName('head')[0];
+                link = document.createElement('link');
+                link.href = path;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                head.appendChild(link);
+            };
+            getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+            getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+        })();
+        $('.flexslider').flexslider({
+            animation: "fade",
+            prevText: "",
+            nextText: "",
+            directionNav: true
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    var search_path = "db.json";
+    if (search_path.length == 0) {
+        search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $("#local-search-input").keydown(function (event) {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            searchFunc(path, 'local-search-input', 'local-search-result');
+        }
+    });
+    $("#local-search-input").keyup(function (event) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+    });
+    $("#navigation").click(function () {
+        $("#local-search-result").html('');
+        $("#local-search-result").hide();
+        $("#local-search-input").val('');
+    })
+</script>
+
+
+<!--统计-->
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script>
+    var APP_ID = 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz';
+    var APP_KEY = 'Itbf11QmS5FNnX7UzEy72OQe';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter) {
+        var query = new AV.Query("Counter");
+        if ($(".leancloud_visitors").length > 0) {
+            var url = $(".leancloud_visitors").attr('id').trim();
+            var postdate = $(".leancloud_visitors").attr('data_time').trim();
+            var time = new Date(postdate).getTime();
+            var init = 99;
+            if (time + 7 * 24 * 3600 * 1000 > new Date().getTime()) {
+                init = 1;
+            }
+            query.equalTo("words", url);
+            query.count().then(function (number) {
+                // There are number instances of MyClass.
+                $(document.getElementById(url)).text(number && !isNaN(number) ? init + number : '--');
+            }, function (error) {
+                // error is an instance of AVError.
+            });
+        }
+        query = new AV.Query("Counter");
+        query.count().then(function (number) {
+            // There are number instances of MyClass.
+            $(document.getElementById('totalcount')).text(number && !isNaN(number) ? 2220 + number : '--');
+        }, function (error) {
+            // error is an instance of AVError.
+        });
+    }
+
+    function addCount(Counter) {
+        var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'icafebolger.com';
+        var Counter = AV.Object.extend("Counter");
+        var query = new Counter;
+        query.save({
+            words: url
+        }).then(function (object) {
+
+        })
+    }
+    $(function () {
+        var Counter = AV.Object.extend("Counter");
+        addCount(Counter);
+        showTime(Counter);
+    });
+</script>
+</body>
+</html>

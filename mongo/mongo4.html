@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <title>
+        
+        mongodb快速入门(五) |
+        
+        i咖啡</title>
+    <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="generator" content="i咖啡">
+    <meta name="author" content="ustbtaotao">
+    
+    <meta name="keywords" content="mongo,主从复制,命令">
+    
+    
+    <meta name="description" content="mongodb,主从复制(windows为例)">
+    
+    <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
+    <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href=" /atom.xml "
+          title="i咖啡" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css"/>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <script src="/js/search.js"></script>
+    <![endif]-->
+
+    
+    
+    
+    <style>.col-md-8.col-md-offset-2.opening-statement img {
+            display: none;
+        }</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+<!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling" xmlns="http://www.w3.org/1999/html"
+ style="background-color: rgba(21, 21, 21, 0.88);"
+>
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+        <img src="/img/close.png" alt="Close"/>
+    </div>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu">
+        <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+        <li><a href="/archives" class="animsition-link" title="archive">所有文章</a>
+        </li>
+        <!-- Dropdown Menu -->
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">按分类<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/categories/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/categories/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/categories/javascript/" class="animsition-link">javascript
+                        <small>(6)</small>
+                    </a></li>
+                
+                <li><a href="/categories/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/categories/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/categories/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/categories/nodejs/" class="animsition-link">nodejs
+                        <small>(18)</small>
+                    </a></li>
+                
+                <li><a href="/categories/reactjs/" class="animsition-link">reactjs
+                        <small>(25)</small>
+                    </a></li>
+                
+                <li><a href="/categories/svn/" class="animsition-link">svn
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/other/" class="animsition-link">其他
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu" id="tabs">按标签<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/tags/reactjs/" class="animsition-link">reactjs
+                        <small>(26)</small>
+                    </a></li>
+                
+                <li><a href="/tags/component/" class="animsition-link">组件
+                        <small>(5)</small>
+                    </a></li>
+                
+                <li><a href="/tags/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/other/" class="animsition-link">其他
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/tags/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(21)</small>
+                    </a></li>
+                
+                <li><a href="/tags/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/tags/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/tags/nodejs/" class="animsition-link">nodejs
+                        <small>(19)</small>
+                    </a></li>
+                
+                <li><a href="/tags/highchart/" class="animsition-link">highchart
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/jquery/" class="animsition-link">jquery
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/webpack/" class="animsition-link">webpack
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/svn/" class="animsition-link">svn
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">友情链接<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="http://tool.chinaz.com/" target="_blank" >站长工具</a></li>
+                
+                <li><a href="http://www.weishao.com.cn/" target="_blank" >锐捷网络_微哨</a></li>
+                
+                <li><a href=" http://www.pangshunlong.com/" target="_blank" >庞顺龙的博客</a></li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu secondary">
+        <li><a href="http://www.icafebolger.comabout.html" class="animsition-link" title="about">About</a></li>
+        <li style="display: none;"><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+    </ul>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+    <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+    <div id="navigation" class="navbar navbar-fixed-top">
+        <div id="site_search" class="sitesearch">
+            <div class="form-group">
+                <input type="text" id="local-search-input" name="q" results="0" placeholder="search"
+                       class="st-search-input st-default-search-input form-control"/>
+            </div>
+            <div id="local-search-result" class="searchresult"></div>
+        </div>
+        <div class="navbar-inner" style="background-color: #e8acac;">
+            <div class="container">
+                <!-- Nav logo -->
+                <div class="logo">
+                    <a href="/" title="Logo" class="animsition-link">
+                        
+                        <img src="/img/logo.png" alt="Logo" width="35px;"/>
+                        
+                    </a>
+                </div>
+                <!-- // Nav logo -->
+                <!-- Info-bar -->
+                <nav>
+                    <ul class="nav">
+                        <li><a href="/" class="animsition-link" style="color: #ffffff;">i咖啡</a></li>
+                        
+                        
+                        <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank" style="color: #ffffff;"><i
+                                        class="icon-sina-weibo" style="color: #ffffff;"></i>微博</a></li>
+                        
+                        <li class="nolink" style="color: #ffffff;"><span>Welcome!</span></li>
+                    </ul>
+                </nav>
+                <!--// Info-bar -->
+            </div>
+            <!-- // .container -->
+            <div class="learnmore sb-toggle-right" style="display: none;">More</div>
+            <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+            </button>
+        </div>
+        <!-- // .navbar-inner -->
+    </div>
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+
+
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+                <span class="post-meta">
+      <time datetime="2017-05-22T00:35:45.000Z" itemprop="datePublished">
+          2017-05-22
+      </time>
+    
+    
+    
+    | 
+    <a href='/tags/mongo/'>mongo</a>
+    
+    
+    <br />
+    字数:<span class="post-count">1,349</span>
+</span>
+                阅读数:
+                <span id="/mongo/mongo4.html" data_time="Mon May 22 2017 08:35:45 GMT+0800" class="leancloud_visitors" data-flag-title="mongodb快速入门(五)"></span>次
+                
+                <h1>mongodb快速入门(五)</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="bshare-custom" style="float: right;">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div style="margin-top: 10px;" id="content">
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>mongodb主从复制等,以windows为例</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p> 我们主要讨论mongodb的部署技术。</p>
+<p>  我们知道sql server能够做到读写分离，双机热备份和集群部署，当然mongodb也能做到，实际应用中我们不希望数据库采用单点部署，</p>
+<p> 如果碰到数据库宕机或者被毁灭性破坏那是多么的糟糕。</p>
+<p> 一：主从复制</p>
+<p> 1： 首先看看模型图</p>
+<p>  <img src="/image/mongo/51.png" alt="mongo51"> </p>
+<p> 2: 从上面的图形中我们可以分析出这种架构有如下的好处：</p>
+<p>  <1>  数据备份。</1></p>
+<p>  <2>  数据恢复。</2></p>
+<p>  <3>  读写分离。</3></p>
+<p> 3：下面我们就一一实践</p>
+<p>  实际应用中我们肯定是多服务器部署，限于自己懒的装虚拟机，就在一台机器上实践了。</p>
+<p> 第一步：我们把mongodb文件夹放在D盘和E盘，模拟放在多服务器上。</p>
+<p> 第二步：启动D盘上的mongodb，把该数据库指定为主数据库，其实命令很简单：&gt;mongodb –dbpath=’XXX’ –master，</p>
+<p>  端口还是默认的27017.<br>  <img src="/image/mongo/52.png" alt="mongo52"></p>
+<p> 第三步：同样的方式启动E盘上的mongodb，指定该数据库为从属数据库，命令也很简单，当然我们要换一个端口，比如：8888。</p>
+<p> source 表示主数据库的地址。</p>
+<blockquote>
+<p>mongod –dbpath=xxxx –port=8888 –slave –source=127.0.0.1:27017<br> <img src="/image/mongo/53.png" alt="mongo53"><br> 第四步：从图中的红色区域我们发现了一条：“applied 1 operations”这样的语句，并且发生的时间相隔10s，也就说明从属数据库每10s</p>
+</blockquote>
+<p> 就向主数据库同步数据，同步依据也就是寻找主数据库的”OpLog“日志，可以在图中红色区域内发现”sync_pullOpLog“字样。</p>
+<p>  接下来我们要做的就是测试，惊讶的发现数据已经同步更新，爽啊。<br> <img src="/image/mongo/54.png" alt="mongo54"></p>
+<p> 4：  如果我还想增加一台从属数据库，但是我不想在启动时就指定，而是后期指定，那么mongodb可否做的到呢？答案肯定是可以的。</p>
+<p>我们的主或者从属数据库中都有一个叫做local的集合，主要是用于存放内部复制信息。</p>
+<p> 好，那么我们就试一下，我在F盘再拷贝一份mongodb的运行程序，cmd窗口好多啊，大家不要搞乱了。<br> <img src="/image/mongo/56.png" alt="mongo56"></p>
+<p>  看上面的log，提示没有主数据库，没关系，某一天我们良心发现，给他后期补贴一下，哈哈，再开一个cmd窗口，语句也就是</p>
+<p>  在sources中add一个host地址，最后发现数据也同步到127.0.0.1:5555这台从属数据库中….</p>
+<p> <img src="/image/mongo/57.png" alt="mongo57">    </p>
+<p> 5: 读写分离</p>
+<p>  这种手段在大一点的架构中都有实现，在mongodb中其实很简单，在默认的情况下，从属数据库不支持数据的读取，但是没关系，</p>
+<p> 在驱动中给我们提供了一个叫做“slaveOkay”来让我们可以显示的读取从属数据库来减轻主数据库的性能压力，这里就不演示了。</p>
+<p> 二：副本集</p>
+<p> 这个也是很牛X的主从集群，不过跟上面的集群还是有两点区别的。<br>  <1>:  该集群没有特定的主数据库。</1></p>
+<p> <2>:  如果哪个主数据库宕机了，集群中就会推选出一个从属数据库作为主数据库顶上，这就具备了自动故障恢复功能，很牛X的啊。</2></p>
+<p>   好，我们现在就来试一下，首先把所有的cmd窗口关掉重新来，清掉db下的所有文件。</p>
+<p> 第一步:  既然我们要建立集群，就得取个集群名字，这里就取我们的公司名shopex, –replSet表示让服务器知道shopex下还有其他数据库，</p>
+<p>  这里就把D盘里面的mongodb程序打开，端口为2222。指定端口为3333是shopex集群下的另一个数据库服务器。</p>
+<p>  <img src="/image/mongo/58.png" alt="mongo58"></p>
+<p> 第二步:  既然上面说3333是另一个数据库服务器，不要急，现在就来开，这里把E盘的mongodb程序打开。<br> <img src="/image/mongo/59.png" alt="mongo59"></p>
+<p> 第三步：  ok，看看上面的日志红色区域，似乎我们还没有做完，是的，log信息告诉我们要初始化一下“副本集“，既然日志这么说，那我也就</p>
+<p> 这么做，随便连接一下哪个服务器都行，不过一定要进入admin集合。</p>
+<p> <img src="/image/mongo/60.png" alt="mongo60"> </p>
+<p> 第四步： 开启成功后，我们要看看谁才能成为主数据库服务器，可以看到端口为2222的已经成为主数据库服务器。</p>
+<p> <img src="/image/mongo/511.png" alt="mongo511"> </p>
+<p> 第五步：我们知道sql server里面有一个叫做仲裁服务器，那么mongodb中也是有的，跟sql server一样，仲裁只参与投票选举，这里我们</p>
+<p>  把F盘的mongodb作为仲裁服务器，然后指定shopex集群中的任一个服务器端口，这里就指定2222。<br> <img src="/image/mongo/512.png" alt="mongo512"></p>
+<p> 然后我们在admin集合中使用rs.addArb()追加即可。<br> <img src="/image/mongo/513.png" alt="mongo513"><br> 追加好了之后，我们使用rs.status()来查看下集群中的服务器状态，图中我们可以清楚的看到谁是主，还是从，还是仲裁。<br> <img src="/image/mongo/514.png" alt="mongo514"></p>
+<p> 不是说该集群有自动故障恢复吗？那么我们就可以来试一下，在2222端口的cmd服务器按Ctrl+C来KO掉该服务器，立马我们发现</p>
+<p> 在3333端口的从属服务器即可顶上，最后大家也可以再次使用rs.status()来看下集群中服务器的状态。<br><img src="/image/mongo/515.png" alt="mongo515"></p>
+
+                <div style="margin-top:15px;">
+                   <hr class="nogutter">
+                   <h3>^-^欢迎回复交流^-^</h3>
+                    <div id="comment" class='cloudcomment'></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+            <div class="bshare-custom" style="float: right;margin-bottom: 10px">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div class="dashang">
+                <div class="title">赏点咖啡钱^.^</div>
+                <img src="/img/wchat.jpeg"/><img src="/img/zhifubao.png"/>
+            </div>
+            <div style="display: none;" id="rocket-to-top">
+                <div style="opacity:0.3;display: block;" class="level-2"></div>
+                <div class="level-3"></div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/mongo/mongo5.html" style="float: left;">
+        ← mongodb快速入门(六)
+    </a>
+    
+    
+    <a class="pull-right" href="/mongo/mongo2.html">
+        mongodb快速入门(四) →
+    </a>
+    
+</nav>
+
+    </div>
+</section>
+
+<div id="qMenu" class="qmenu">
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true" onclick="javacript:void(0);$('#qMenu').hide();">
+        <img src="/img/close.png" alt="Close">
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+<script src="../../js/av-min.js"></script>
+<script src="../../js/Valine.min.js"></script>
+<script src=''></script>
+<script type="text/javascript">
+    //// 小火箭
+    $(function () {
+        var e = $("#rocket-to-top"),
+                t = $(document).scrollTop(),
+                n,
+                r,
+                i = !0;
+        $(window).scroll(function () {
+            var t = $(document).scrollTop();
+            t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
+                        marginTop: "-1000px"
+                    },
+                    "normal",
+                    function () {
+                        e.css({
+                            "margin-top": "-125px",
+                            display: "none"
+                        }),
+                                i = !0
+                    })) : e.fadeIn("slow")
+        }),
+                e.hover(function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 1
+                            })
+                        },
+                        function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 0
+                            })
+                        }),
+                $(".level-3").click(function () {
+                    function t() {
+                        var t = e.css("background-position");
+                        if (e.css("display") == "none" || i == 0) {
+                            clearInterval(n),
+                                    e.css("background-position", "0px 0px");
+                            return
+                        }
+                        switch (t) {
+                            case "0px 0px":
+                                e.css("background-position", "-298px 0px");
+                                break;
+                            case "-298px 0px":
+                                e.css("background-position", "-447px 0px");
+                                break;
+                            case "-447px 0px":
+                                e.css("background-position", "-596px 0px");
+                                break;
+                            case "-596px 0px":
+                                e.css("background-position", "-745px 0px");
+                                break;
+                            case "-745px 0px":
+                                e.css("background-position", "-298px 0px");
+                        }
+                    }
+
+                    if (!i) return;
+                    n = setInterval(t, 50),
+                            $("html,body").animate({scrollTop: 0}, "slow");
+                });
+    });
+
+
+    //// a 标签新页面打开
+    $("#content a").each(function () {
+        $(this).attr('target','_blank');
+        $(this).attr('style','color:#203ada;');
+    })
+
+</script>
+<script type="text/javascript">
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false,   
+        appId: 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz',
+        appKey: 'Itbf11QmS5FNnX7UzEy72OQe',
+        placeholder: 'just go go',
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    //// 生成目录
+    function go(title) {
+        var top = $("#" + title).offset().top;
+        $(document).scrollTop(top - 60);
+    }
+    ;
+    var system = {
+        win: false,
+        mac: false,
+        xll: false,
+        ipad: false
+    };
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+    if ((system.win || system.mac || system.xll || system.ipad)) {
+        //document.writeln('PC')
+        $(function () {
+            var qMenu = '';
+            var title = '';
+            var obj;
+            $('#content').find('h2').each(function (index, item) {
+                obj = $(this).find('a.headerlink').eq(0);
+                title = obj.attr('title');
+                qMenu += '<div class="contenttitle" data="title" onclick="go(\'' + title + '\')">' + index + '、' + title + '</div>';
+            })
+            if (qMenu.length > 0) {
+                qMenu = ' <div><span>目录</span>' + qMenu + '</div>';
+                $('#qMenu').append($(qMenu));
+            }else {
+                $('#qMenu').remove();
+            }
+        });
+    } else {
+        $('#qMenu').remove();
+    }
+</script>
+
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+        <div class="copy">
+            <p>
+                &copy; 2017
+                <script>new Date().getFullYear() > 2010 && document.write("-" + new Date().getFullYear());</script>
+                , Content By ustbtaotao. All Rights Reserved.
+            </p>
+            <p>welcome to U &nbsp;&nbsp;&nbsp;&nbsp;i咖啡小屋里的咖啡被品尝<span style="color: red" id="totalcount">--</span>次</p>
+            <div class="guanzhu">
+                <div class="weixin">
+                    <span>关注微信</span>
+                    <img src="/img/weixin.jpg"/>
+                </div>
+                <div class="weibo">
+                    <span>关注微博</span>
+                    <img src="/img/weibo.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="social">
+            <ul>
+                
+                
+                
+                
+                
+                <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;
+                </li>
+                
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16ff0b4e8ca51c0734eb447a23473b9f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?65e3e0b08038c3bdc07ecf223a4ae231";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+<!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+                window1 = $(window);
+        hero.css({
+            "height": window1.height() - 300
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<script src="/js/search.js"></script>
+<script src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+<script type="text/javascript">
+    $('#intro').find('img').each(function () {
+        var alt = this.alt;
+
+        if (alt) {
+            $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+        }
+
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+    });
+    jQuery(document).ready(function () {
+        jQuery('.fancybox').fancybox();
+    })
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        (function () {
+            console.log('font');
+            var getCss = function (path) {
+                var head = document.getElementsByTagName('head')[0];
+                link = document.createElement('link');
+                link.href = path;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                head.appendChild(link);
+            };
+            getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+            getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+        })();
+        $('.flexslider').flexslider({
+            animation: "fade",
+            prevText: "",
+            nextText: "",
+            directionNav: true
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    var search_path = "db.json";
+    if (search_path.length == 0) {
+        search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $("#local-search-input").keydown(function (event) {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            searchFunc(path, 'local-search-input', 'local-search-result');
+        }
+    });
+    $("#local-search-input").keyup(function (event) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+    });
+    $("#navigation").click(function () {
+        $("#local-search-result").html('');
+        $("#local-search-result").hide();
+        $("#local-search-input").val('');
+    })
+</script>
+
+
+<!--统计-->
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script>
+    var APP_ID = 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz';
+    var APP_KEY = 'Itbf11QmS5FNnX7UzEy72OQe';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter) {
+        var query = new AV.Query("Counter");
+        if ($(".leancloud_visitors").length > 0) {
+            var url = $(".leancloud_visitors").attr('id').trim();
+            var postdate = $(".leancloud_visitors").attr('data_time').trim();
+            var time = new Date(postdate).getTime();
+            var init = 99;
+            if (time + 7 * 24 * 3600 * 1000 > new Date().getTime()) {
+                init = 1;
+            }
+            query.equalTo("words", url);
+            query.count().then(function (number) {
+                // There are number instances of MyClass.
+                $(document.getElementById(url)).text(number && !isNaN(number) ? init + number : '--');
+            }, function (error) {
+                // error is an instance of AVError.
+            });
+        }
+        query = new AV.Query("Counter");
+        query.count().then(function (number) {
+            // There are number instances of MyClass.
+            $(document.getElementById('totalcount')).text(number && !isNaN(number) ? 2220 + number : '--');
+        }, function (error) {
+            // error is an instance of AVError.
+        });
+    }
+
+    function addCount(Counter) {
+        var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'icafebolger.com';
+        var Counter = AV.Object.extend("Counter");
+        var query = new Counter;
+        query.save({
+            words: url
+        }).then(function (object) {
+
+        })
+    }
+    $(function () {
+        var Counter = AV.Object.extend("Counter");
+        addCount(Counter);
+        showTime(Counter);
+    });
+</script>
+</body>
+</html>

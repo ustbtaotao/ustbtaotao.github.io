@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <title>
+        
+        react项目 webpack 3.x打包效率提升记 |
+        
+        i咖啡</title>
+    <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="generator" content="i咖啡">
+    <meta name="author" content="ustbtaotao">
+    
+    <meta name="keywords" content="reactjs,webpack,效率">
+    
+    
+    <meta name="description" content="react项目 webpack 3.x">
+    
+    <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
+    <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href=" /atom.xml "
+          title="i咖啡" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css"/>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <script src="/js/search.js"></script>
+    <![endif]-->
+
+    
+    
+    
+    <style>.col-md-8.col-md-offset-2.opening-statement img {
+            display: none;
+        }</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+<!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling" xmlns="http://www.w3.org/1999/html"
+ style="background-color: rgba(21, 21, 21, 0.88);"
+>
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+        <img src="/img/close.png" alt="Close"/>
+    </div>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu">
+        <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+        <li><a href="/archives" class="animsition-link" title="archive">所有文章</a>
+        </li>
+        <!-- Dropdown Menu -->
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">按分类<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/categories/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/categories/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/categories/javascript/" class="animsition-link">javascript
+                        <small>(6)</small>
+                    </a></li>
+                
+                <li><a href="/categories/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/categories/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/categories/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/categories/nodejs/" class="animsition-link">nodejs
+                        <small>(18)</small>
+                    </a></li>
+                
+                <li><a href="/categories/reactjs/" class="animsition-link">reactjs
+                        <small>(25)</small>
+                    </a></li>
+                
+                <li><a href="/categories/svn/" class="animsition-link">svn
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/other/" class="animsition-link">其他
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu" id="tabs">按标签<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/tags/reactjs/" class="animsition-link">reactjs
+                        <small>(26)</small>
+                    </a></li>
+                
+                <li><a href="/tags/component/" class="animsition-link">组件
+                        <small>(5)</small>
+                    </a></li>
+                
+                <li><a href="/tags/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/other/" class="animsition-link">其他
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/tags/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(21)</small>
+                    </a></li>
+                
+                <li><a href="/tags/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/tags/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/tags/nodejs/" class="animsition-link">nodejs
+                        <small>(19)</small>
+                    </a></li>
+                
+                <li><a href="/tags/highchart/" class="animsition-link">highchart
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/jquery/" class="animsition-link">jquery
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/webpack/" class="animsition-link">webpack
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/svn/" class="animsition-link">svn
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">友情链接<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="http://tool.chinaz.com/" target="_blank" >站长工具</a></li>
+                
+                <li><a href="http://www.weishao.com.cn/" target="_blank" >锐捷网络_微哨</a></li>
+                
+                <li><a href=" http://www.pangshunlong.com/" target="_blank" >庞顺龙的博客</a></li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu secondary">
+        <li><a href="http://www.icafebolger.comabout.html" class="animsition-link" title="about">About</a></li>
+        <li style="display: none;"><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+    </ul>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+    <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+    <div id="navigation" class="navbar navbar-fixed-top">
+        <div id="site_search" class="sitesearch">
+            <div class="form-group">
+                <input type="text" id="local-search-input" name="q" results="0" placeholder="search"
+                       class="st-search-input st-default-search-input form-control"/>
+            </div>
+            <div id="local-search-result" class="searchresult"></div>
+        </div>
+        <div class="navbar-inner" style="background-color: #e8acac;">
+            <div class="container">
+                <!-- Nav logo -->
+                <div class="logo">
+                    <a href="/" title="Logo" class="animsition-link">
+                        
+                        <img src="/img/logo.png" alt="Logo" width="35px;"/>
+                        
+                    </a>
+                </div>
+                <!-- // Nav logo -->
+                <!-- Info-bar -->
+                <nav>
+                    <ul class="nav">
+                        <li><a href="/" class="animsition-link" style="color: #ffffff;">i咖啡</a></li>
+                        
+                        
+                        <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank" style="color: #ffffff;"><i
+                                        class="icon-sina-weibo" style="color: #ffffff;"></i>微博</a></li>
+                        
+                        <li class="nolink" style="color: #ffffff;"><span>Welcome!</span></li>
+                    </ul>
+                </nav>
+                <!--// Info-bar -->
+            </div>
+            <!-- // .container -->
+            <div class="learnmore sb-toggle-right" style="display: none;">More</div>
+            <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+            </button>
+        </div>
+        <!-- // .navbar-inner -->
+    </div>
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+
+
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+                <span class="post-meta">
+      <time datetime="2019-06-26T09:08:43.000Z" itemprop="datePublished">
+          2019-06-26
+      </time>
+    
+    
+    
+    | 
+    <a href='/tags/reactjs/'>reactjs</a>,
+    
+    <a href='/tags/webpack/'>webpack</a>
+    
+    
+    <br />
+    字数:<span class="post-count">1,043</span>
+</span>
+                阅读数:
+                <span id="/reactjs/reactwebpack2.html" data_time="Wed Jun 26 2019 17:08:43 GMT+0800" class="leancloud_visitors" data-flag-title="react项目 webpack 3.x打包效率提升记"></span>次
+                
+                <h1>react项目 webpack 3.x打包效率提升记</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="bshare-custom" style="float: right;">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div style="margin-top: 10px;" id="content">
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>webpack是大家都知晓的主流打包工具,或者形象的讲是“模块打包机”，在之前的博客中也<br>总结了<a href="/reactjs/reactwebpack.html">1.x–&gt;2.x</a>的核心步骤。今天要介绍的如何提升<br>前端项目的打包效率，缩短打包时间，进而缩短项目部署的时间。<br>大家都知道，随着项目原来越大，需要解析和处理的文件也越来越多，构建是文件读写和计算密集型的操作，<br>这时候webpack的处理效率会越来越慢。运行在nodejs的webpack是单线程模式，也就说它不能<br>同时处理好几件事，所以这也就说慢的原因。那么有没有办法让webpack并行处理呢。答案肯定是有的。</p>
+<ul>
+<li><code>happypack </code><br>首先介绍一下<a href="https://www.npmjs.com/package/happypack" target="_blank" rel="noopener">happypack</a><br>它的思想就是将<br>任务拆分成多个子进程进行并发处理，处理完成后将结果返回给主进程也就是webpack进程。那么怎么<br>接入呢？<br>先看看没接入前：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">          rules: [&#123;</span><br><span class="line">              test: /\.(js|jsx)$/,</span><br><span class="line">              exclude: /node_modules/,</span><br><span class="line">              loader: &apos;babel-loader&apos;</span><br><span class="line">          &#125;,</span><br><span class="line">          , &#123;</span><br><span class="line">             test: /\.(css|less)$/,</span><br><span class="line">             use: ExtractTextPlugin.extract(&#123;</span><br><span class="line">                 fallback: &apos;style-loader&apos;,</span><br><span class="line">                 use: [&#123;</span><br><span class="line">                     loader: &apos;css-loader&apos;</span><br><span class="line">                 &#125;, &#123;</span><br><span class="line">                     loader: &apos;less-loader&apos;</span><br><span class="line">                 &#125;]</span><br><span class="line">          </span><br><span class="line">             &#125;)</span><br><span class="line">           &#125;</span><br><span class="line">          ...</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用了babel-loader对es6的语法进行转化。接入happypack：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const HappyPack = require(&apos;happypack&apos;);</span><br><span class="line">const happyThreadPool = HappyPack.ThreadPool(&#123; size: 4 &#125;); // 默认3个进程</span><br><span class="line">module: &#123;</span><br><span class="line">          rules: [&#123;</span><br><span class="line">              test: /\.(js|jsx)$/,</span><br><span class="line">              exclude: /node_modules/,</span><br><span class="line">              loader: &apos;happypack/loader?id=happyBabel&apos;,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">              test: /\.(css|less)$/,</span><br><span class="line">              loader: &apos;happypack/loader?id=styles&apos;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ...</span><br><span class="line">        &#125;,</span><br><span class="line">        // add a new plugin</span><br><span class="line">plugins: [</span><br><span class="line">        new HappyPack(&#123;</span><br><span class="line">            id: &apos;happyBabel&apos;, // 必须和rules里的id保持一致</span><br><span class="line">            loaders: [&#123;</span><br><span class="line">                loader: &apos;babel-loader?cacheDirectory=true&apos;,</span><br><span class="line">            &#125;],</span><br><span class="line">            threadPool: happyThreadPool,</span><br><span class="line">            verbose: true,</span><br><span class="line">        &#125;),</span><br><span class="line">        new HappyPack(&#123;</span><br><span class="line">            id: &apos;styles&apos;,</span><br><span class="line">            threadPool: happyThreadPool,</span><br><span class="line">            loaders: [ &apos;style-loader&apos;, &apos;css-loader&apos;, &apos;less-loader&apos; ]</span><br><span class="line">          &#125;)        </span><br><span class="line">        ...</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
+<p><code>注：</code>对于样式的happpack可能会报错，如果报错，还原样式部分配置即可。</p>
+<ul>
+<li><code>webpack-parallel-uglify-plugin</code></li>
+</ul>
+<p>代码并行转换完了，但是最最费时间的是js的压缩，在常用的配置中我们会使用webpack插件<br>uglifyjs-webpack-plugin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const UglifyJSPlugin = require(&apos;uglifyjs-webpack-plugin&apos;);</span><br><span class="line">plugins: [</span><br><span class="line">        new UglifyJSPlugin(&#123;</span><br><span class="line">            sourceMap: false,</span><br><span class="line">            uglifyOptions: &#123;</span><br><span class="line">                ecma: 5,</span><br><span class="line">                ie8: true,</span><br><span class="line">                mangle: false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;),</span><br><span class="line">        ....</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure></p>
+<p>这里也是单线程的，对于越来越多越大的js，压缩时间可想而知。同理，我们也可以参考<br>happypack的思想，让并发起来，这里介绍另个神器<a href="https://www.npmjs.com/package/webpack-parallel-uglify-plugin" target="_blank" rel="noopener">webpack-parallel-uglify-plugin</a><br>原理类似。具体接入方法如下：<br>讲原来部分注销掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">const ParallelUglifyPlugin = require(&apos;webpack-parallel-uglify-plugin&apos;);</span><br><span class="line"> plugins: [</span><br><span class="line">        /*new UglifyJSPlugin(&#123;</span><br><span class="line">            sourceMap: false,</span><br><span class="line">            uglifyOptions: &#123;</span><br><span class="line">                ecma: 5,</span><br><span class="line">                ie8: true,</span><br><span class="line">                // 不能压缩变量名，会导致项目无法发起异步请求</span><br><span class="line">                mangle: false</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;),*/</span><br><span class="line">        // 使用 ParallelUglifyPlugin 并行压缩输出JS代码</span><br><span class="line">        new ParallelUglifyPlugin(&#123;</span><br><span class="line">            uglifyJS: &#123;</span><br><span class="line">                output: &#123;</span><br><span class="line">                    /*</span><br><span class="line">                     是否输出可读性较强的代码，即会保留空格和制表符，默认为输出，为了达到更好的压缩效果，</span><br><span class="line">                     可以设置为false</span><br><span class="line">                    */</span><br><span class="line">                    beautify: false,</span><br><span class="line">                    /*</span><br><span class="line">                     是否保留代码中的注释，默认为保留，为了达到更好的压缩效果，可以设置为false</span><br><span class="line">                    */</span><br><span class="line">                    comments: false</span><br><span class="line">                &#125;,</span><br><span class="line">                compress: &#123;</span><br><span class="line">                    /*</span><br><span class="line">                     是否在UglifyJS删除没有用到的代码时输出警告信息，默认为输出，可以设置为false关闭这些作用</span><br><span class="line">                     不大的警告</span><br><span class="line">                    */</span><br><span class="line">                    warnings: false,</span><br><span class="line"></span><br><span class="line">                    /*</span><br><span class="line">                     是否删除代码中所有的console语句，默认为不删除，开启后，会删除所有的console语句</span><br><span class="line">                    */</span><br><span class="line">                    drop_console: true,</span><br><span class="line"></span><br><span class="line">                    /*</span><br><span class="line">                     是否内嵌虽然已经定义了，但是只用到一次的变量，比如将 var x = 1; y = x, 转换成 y = 5, 默认为不</span><br><span class="line">                     转换，为了达到更好的压缩效果，可以设置为false</span><br><span class="line">                    */</span><br><span class="line">                    collapse_vars: true,</span><br><span class="line"></span><br><span class="line">                    /*</span><br><span class="line">                     是否提取出现了多次但是没有定义成变量去引用的静态值，比如将 x = &apos;xxx&apos;; y = &apos;xxx&apos;  转换成</span><br><span class="line">                     var a = &apos;xxxx&apos;; x = a; y = a; 默认为不转换，为了达到更好的压缩效果，可以设置为false</span><br><span class="line">                    */</span><br><span class="line">                    reduce_vars: true</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;),</span><br><span class="line">        ...</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure></p>
+<p>至此，在两大神器的加盟下，实际效果到底如何呢？<br>实际项目,pack 5次求平均，测试结果如下</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">before</th>
+<th style="text-align:center">only with ParallelUglifyPlugin</th>
+<th style="text-align:center">with ParallelUglifyPlugin &amp; happypack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">4min30s</td>
+<td style="text-align:center">1min30s</td>
+<td style="text-align:center">&lt;1min</td>
+</tr>
+</tbody>
+</table>
+
+                <div style="margin-top:15px;">
+                   <hr class="nogutter">
+                   <h3>^-^欢迎回复交流^-^</h3>
+                    <div id="comment" class='cloudcomment'></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+            <div class="bshare-custom" style="float: right;margin-bottom: 10px">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div class="dashang">
+                <div class="title">赏点咖啡钱^.^</div>
+                <img src="/img/wchat.jpeg"/><img src="/img/zhifubao.png"/>
+            </div>
+            <div style="display: none;" id="rocket-to-top">
+                <div style="opacity:0.3;display: block;" class="level-2"></div>
+                <div class="level-3"></div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/hexo/hexoqiuniu.html" style="float: left;">
+        ← 七牛图片快速下载到本地服务器
+    </a>
+    
+    
+    <a class="pull-right" href="/git/git.html">
+        git常用命令 →
+    </a>
+    
+</nav>
+
+    </div>
+</section>
+
+<div id="qMenu" class="qmenu">
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true" onclick="javacript:void(0);$('#qMenu').hide();">
+        <img src="/img/close.png" alt="Close">
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+<script src="../../js/av-min.js"></script>
+<script src="../../js/Valine.min.js"></script>
+<script src=''></script>
+<script type="text/javascript">
+    //// 小火箭
+    $(function () {
+        var e = $("#rocket-to-top"),
+                t = $(document).scrollTop(),
+                n,
+                r,
+                i = !0;
+        $(window).scroll(function () {
+            var t = $(document).scrollTop();
+            t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
+                        marginTop: "-1000px"
+                    },
+                    "normal",
+                    function () {
+                        e.css({
+                            "margin-top": "-125px",
+                            display: "none"
+                        }),
+                                i = !0
+                    })) : e.fadeIn("slow")
+        }),
+                e.hover(function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 1
+                            })
+                        },
+                        function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 0
+                            })
+                        }),
+                $(".level-3").click(function () {
+                    function t() {
+                        var t = e.css("background-position");
+                        if (e.css("display") == "none" || i == 0) {
+                            clearInterval(n),
+                                    e.css("background-position", "0px 0px");
+                            return
+                        }
+                        switch (t) {
+                            case "0px 0px":
+                                e.css("background-position", "-298px 0px");
+                                break;
+                            case "-298px 0px":
+                                e.css("background-position", "-447px 0px");
+                                break;
+                            case "-447px 0px":
+                                e.css("background-position", "-596px 0px");
+                                break;
+                            case "-596px 0px":
+                                e.css("background-position", "-745px 0px");
+                                break;
+                            case "-745px 0px":
+                                e.css("background-position", "-298px 0px");
+                        }
+                    }
+
+                    if (!i) return;
+                    n = setInterval(t, 50),
+                            $("html,body").animate({scrollTop: 0}, "slow");
+                });
+    });
+
+
+    //// a 标签新页面打开
+    $("#content a").each(function () {
+        $(this).attr('target','_blank');
+        $(this).attr('style','color:#203ada;');
+    })
+
+</script>
+<script type="text/javascript">
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false,   
+        appId: 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz',
+        appKey: 'Itbf11QmS5FNnX7UzEy72OQe',
+        placeholder: 'just go go',
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    //// 生成目录
+    function go(title) {
+        var top = $("#" + title).offset().top;
+        $(document).scrollTop(top - 60);
+    }
+    ;
+    var system = {
+        win: false,
+        mac: false,
+        xll: false,
+        ipad: false
+    };
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+    if ((system.win || system.mac || system.xll || system.ipad)) {
+        //document.writeln('PC')
+        $(function () {
+            var qMenu = '';
+            var title = '';
+            var obj;
+            $('#content').find('h2').each(function (index, item) {
+                obj = $(this).find('a.headerlink').eq(0);
+                title = obj.attr('title');
+                qMenu += '<div class="contenttitle" data="title" onclick="go(\'' + title + '\')">' + index + '、' + title + '</div>';
+            })
+            if (qMenu.length > 0) {
+                qMenu = ' <div><span>目录</span>' + qMenu + '</div>';
+                $('#qMenu').append($(qMenu));
+            }else {
+                $('#qMenu').remove();
+            }
+        });
+    } else {
+        $('#qMenu').remove();
+    }
+</script>
+
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+        <div class="copy">
+            <p>
+                &copy; 2017
+                <script>new Date().getFullYear() > 2010 && document.write("-" + new Date().getFullYear());</script>
+                , Content By ustbtaotao. All Rights Reserved.
+            </p>
+            <p>welcome to U &nbsp;&nbsp;&nbsp;&nbsp;i咖啡小屋里的咖啡被品尝<span style="color: red" id="totalcount">--</span>次</p>
+            <div class="guanzhu">
+                <div class="weixin">
+                    <span>关注微信</span>
+                    <img src="/img/weixin.jpg"/>
+                </div>
+                <div class="weibo">
+                    <span>关注微博</span>
+                    <img src="/img/weibo.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="social">
+            <ul>
+                
+                
+                
+                
+                
+                <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;
+                </li>
+                
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16ff0b4e8ca51c0734eb447a23473b9f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?65e3e0b08038c3bdc07ecf223a4ae231";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+<!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+                window1 = $(window);
+        hero.css({
+            "height": window1.height() - 300
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<script src="/js/search.js"></script>
+<script src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+<script type="text/javascript">
+    $('#intro').find('img').each(function () {
+        var alt = this.alt;
+
+        if (alt) {
+            $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+        }
+
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+    });
+    jQuery(document).ready(function () {
+        jQuery('.fancybox').fancybox();
+    })
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        (function () {
+            console.log('font');
+            var getCss = function (path) {
+                var head = document.getElementsByTagName('head')[0];
+                link = document.createElement('link');
+                link.href = path;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                head.appendChild(link);
+            };
+            getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+            getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+        })();
+        $('.flexslider').flexslider({
+            animation: "fade",
+            prevText: "",
+            nextText: "",
+            directionNav: true
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    var search_path = "db.json";
+    if (search_path.length == 0) {
+        search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $("#local-search-input").keydown(function (event) {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            searchFunc(path, 'local-search-input', 'local-search-result');
+        }
+    });
+    $("#local-search-input").keyup(function (event) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+    });
+    $("#navigation").click(function () {
+        $("#local-search-result").html('');
+        $("#local-search-result").hide();
+        $("#local-search-input").val('');
+    })
+</script>
+
+
+<!--统计-->
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script>
+    var APP_ID = 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz';
+    var APP_KEY = 'Itbf11QmS5FNnX7UzEy72OQe';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter) {
+        var query = new AV.Query("Counter");
+        if ($(".leancloud_visitors").length > 0) {
+            var url = $(".leancloud_visitors").attr('id').trim();
+            var postdate = $(".leancloud_visitors").attr('data_time').trim();
+            var time = new Date(postdate).getTime();
+            var init = 99;
+            if (time + 7 * 24 * 3600 * 1000 > new Date().getTime()) {
+                init = 1;
+            }
+            query.equalTo("words", url);
+            query.count().then(function (number) {
+                // There are number instances of MyClass.
+                $(document.getElementById(url)).text(number && !isNaN(number) ? init + number : '--');
+            }, function (error) {
+                // error is an instance of AVError.
+            });
+        }
+        query = new AV.Query("Counter");
+        query.count().then(function (number) {
+            // There are number instances of MyClass.
+            $(document.getElementById('totalcount')).text(number && !isNaN(number) ? 2220 + number : '--');
+        }, function (error) {
+            // error is an instance of AVError.
+        });
+    }
+
+    function addCount(Counter) {
+        var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'icafebolger.com';
+        var Counter = AV.Object.extend("Counter");
+        var query = new Counter;
+        query.save({
+            words: url
+        }).then(function (object) {
+
+        })
+    }
+    $(function () {
+        var Counter = AV.Object.extend("Counter");
+        addCount(Counter);
+        showTime(Counter);
+    });
+</script>
+</body>
+</html>
