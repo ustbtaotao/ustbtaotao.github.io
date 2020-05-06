@@ -130,7 +130,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(25)</small>
+                        <small>(26)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -158,7 +158,7 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(26)</small>
+                        <small>(27)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
@@ -169,6 +169,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
                 <li><a href="/tags/other/" class="animsition-link">其他
                         <small>(3)</small>
                     </a></li>
@@ -177,16 +181,12 @@
                         <small>(1)</small>
                     </a></li>
                 
-                <li><a href="/tags/hexo/" class="animsition-link">hexo
-                        <small>(7)</small>
-                    </a></li>
-                
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
                     </a></li>
                 
                 <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(21)</small>
+                        <small>(22)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -349,6 +349,45 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/kettle/kettle4.html">kettle实现异构数据同步(四)</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2018-03-15T08:08:43.000Z" itemprop="datePublished">
+          2018-03-15
+      </time>
+    
+    
+    
+    | 
+    <a href='/tags/kettle/'>kettle</a>
+    
+    
+    <br />
+    字数:<span class="post-count">474</span>
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        说明今天谈谈kettle（v7.2）数据同步之增量更新，在实际的业务中经常会遇到增量更新的问题，一般有两种做法：1、先全量删除、后全量插入优点：简单，快速；缺点：修改的增量数据体现不出来，数据体积庞大2、当前数据和历史数据进行一一对比优点：增量数据体积小，更符合业务场景要求缺点：计算成本高、耗费资源
+总体实现本例使用的mysql数据库，数据库连接这里不再赘述，参见上一篇说明用到的组件：1、输入：表2、合并记录：用来比较当前和历史数据，生
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/kettle/kettle4.html">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -774,49 +813,6 @@
                     
                     <p class="pull-right readMore">
                         <a href="/svn/svnshell.html">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/linux/linuxgraphicsmagic.html">linux GraphicsMagick安装</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2017-09-15T01:42:40.000Z" itemprop="datePublished">
-          2017-09-15
-      </time>
-    
-    
-    
-    | 
-    <a href='/tags/linux/'>linux</a>
-    
-    
-    <br />
-    字数:<span class="post-count">328</span>
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        说明上一篇我们介绍了gm依赖imagemagic的安装说明，有人反馈说安装失败了，于是我尝试着改用另一个一来包GraphicsMagick,安装过程相当顺利，以下是安装过程
-安装步骤
-1、安装依赖
-
-1yum install -y gcc libpng libjpeg libpng-devel libjpeg-devel ghostscript libtiff libtiff-devel freetype freetype-devel
-
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/linux/linuxgraphicsmagic.html">Read More...</a>
                     </p>
                     
                 </div>

@@ -19,7 +19,7 @@
 <head>
     <title>
         
-        Archives: 2017/6 |
+        react项目中实现音频播放,自定义UI |
         
         i咖啡</title>
     <!-- Meta data -->
@@ -29,10 +29,10 @@
     <meta name="generator" content="i咖啡">
     <meta name="author" content="ustbtaotao">
     
-    <meta name="keywords" content="i咖啡,博客,reactjs,react,node,nodejs,mobile,javascript,.net,前端开发">
+    <meta name="keywords" content="reactjs,音频播放,react+redux+router+webpack">
     
     
-    <meta name="description" content="欢迎来到icafe咖啡屋,这里虽然没有咖啡的浓香,但是你可以端起一杯浓浓的咖啡来坐坐,停留片刻,交流下经验。每天积累一点点,就能进步一丢丢">
+    <meta name="description" content="react项目中实现音频播放,自定义UI,基于es6 hook">
     
     <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
     <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
@@ -71,7 +71,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -317,91 +317,232 @@
     <!-- ============================ Header & Logo bar =========================== -->
 
 
-<!-- ============================ Hero Image =========================== -->
 
-<section id="hero" class="scrollme">
-    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                    <div style="margin-top: 25%;">
-                        
-                        <h2 style="color: #ffffff">WELCOME TO <span>MY HOME</span>, PLEASE READING AND SHARING.</h2>
-                        <p style="color: #e6d1d1"></p>
-                        
-                        <h2 style="color: #ffffff"></h2>
-                        <p style="color: #e6d1d1">每天积累一点点,就能进步一丢丢。</p>
-                        
-
-                    </div>
-                </div>
-            </div>
-            <!-- // .col-md-12 -->
-        </div>
-        <div class="herofade beige-dk"></div>
-    </div>
-</section>
-
-<!-- Height spacing helper -->
-<div class="heightblock"></div>
-<!-- // End height spacing helper -->
-
-<!-- ============================ END Hero Image =========================== -->
-
-
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/nodejs/nodees6.html">让nodejs支持es6<br/><span style="color:#948989;font-size: 14px;">让nodejs支持es6,体验es6的高效编程带来的快感</span></a></h4>
-                            
-                            <p><time datetime="2017-06-05T00:50:40.000Z"><a href="/nodejs/nodees6.html">2017-06-05</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/nodejs/nodenice.html">nodejs性能优化<br/><span style="color:#948989;font-size: 14px;">nodejs性能优化,让你的程序快如飞</span></a></h4>
-                            
-                            <p><time datetime="2017-06-02T00:50:40.000Z"><a href="/nodejs/nodenice.html">2017-06-02</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/reactjs/reactfetch.html">react项目中使用fetch进行网络请求<br/><span style="color:#948989;font-size: 14px;">react项目中使用fetch进行网络请求(get/post),基于es6</span></a></h4>
-                            
-                            <p><time datetime="2017-06-01T00:48:43.000Z"><a href="/reactjs/reactfetch.html">2017-06-01</a></time></p>
-                        </div>
-                    
-                </div>
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+                <span class="post-meta">
+      <time datetime="2020-05-06T02:08:43.000Z" itemprop="datePublished">
+          2020-05-06
+      </time>
+    
+       <img src="/img/new.png" style="display: block" class="new"/>
+     
+    
+    
+    | 
+    <a href='/tags/reactjs/'>reactjs</a>,
+    
+    <a href='/tags/javascript/'>javascript</a>
+    
+    
+    <br />
+    字数:<span class="post-count">221</span>
+</span>
+                阅读数:
+                <span id="/reactjs/reactaudio2.html" data_time="Wed May 06 2020 10:08:43 GMT+0800" class="leancloud_visitors" data-flag-title="react项目中实现音频播放,自定义UI"></span>次
+                
+                <h1>react项目中实现音频播放,自定义UI</h1>
             </div>
         </div>
-        <nav class="pagination" role="pagination" style="width: 80%">
-            <a class="pull-left" href="/archives/2017/06/">← 上一页</a>
-            
-        </nav>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+            <div class="bshare-custom" style="float: right;">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div style="margin-top: 10px;" id="content">
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p><a href="/reactjs/reactaudio.html">上一篇</a>,我们简单的实现了音频的暂停，播放，时间更新等简单的<br>音频播放功能，今天我们来个进阶版，在以上基础功能基础上增加了</p>
+<ul>
+<li>1、支持设置片段截取播放</li>
+<li>2、支持拖动播放</li>
+<li>3、支持音量控制</li>
+<li>4、支持音频文件下载</li>
+</ul>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>本例基于react hook实现，核心原理同<a href="/reactjs/reactaudio.html">上一篇</a>，拖动音频部分和音量设置部分<br>主要是调用了音频api的 audio.volume 和 audio.currentTime 然后更新相对应的ui部分即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const onAfterChange = (value, type) =&gt; &#123;</span><br><span class="line">        const myVid = aRef.current;</span><br><span class="line">        if (type === &quot;voice&quot;) &#123;</span><br><span class="line">            myVid.volume = value;</span><br><span class="line">            setVolume(value);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            setProcess(value);</span><br><span class="line">            myVid.currentTime = parseInt(String((myVid.duration * value) / 100));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p>想了解细节的可以留言或者加vo</p>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p> <img src="/image/react/audio.jpg" alt="audio1"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p> 如有疑问或者更好的方案留言下方……^_^</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p></p>
+                <div style="margin-top:15px;">
+                   <hr class="nogutter">
+                   <h3>^-^欢迎回复交流^-^</h3>
+                    <div id="comment" class='cloudcomment'></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+            <div class="bshare-custom" style="float: right;margin-bottom: 10px">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div class="dashang">
+                <div class="title">赏点咖啡钱^.^</div>
+                <img src="/img/wchat.jpeg"/><img src="/img/zhifubao.png"/>
+            </div>
+            <div style="display: none;" id="rocket-to-top">
+                <div style="opacity:0.3;display: block;" class="level-2"></div>
+                <div class="level-3"></div>
+            </div>
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/javascript/jspattern.html">
+        js正则表达式 →
+    </a>
+    
+</nav>
+
     </div>
 </section>
+
+<div id="qMenu" class="qmenu">
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true" onclick="javacript:void(0);$('#qMenu').hide();">
+        <img src="/img/close.png" alt="Close">
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+<script src="../../js/av-min.js"></script>
+<script src="../../js/Valine.min.js"></script>
+<script src=''></script>
+<script type="text/javascript">
+    //// 小火箭
+    $(function () {
+        var e = $("#rocket-to-top"),
+                t = $(document).scrollTop(),
+                n,
+                r,
+                i = !0;
+        $(window).scroll(function () {
+            var t = $(document).scrollTop();
+            t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
+                        marginTop: "-1000px"
+                    },
+                    "normal",
+                    function () {
+                        e.css({
+                            "margin-top": "-125px",
+                            display: "none"
+                        }),
+                                i = !0
+                    })) : e.fadeIn("slow")
+        }),
+                e.hover(function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 1
+                            })
+                        },
+                        function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 0
+                            })
+                        }),
+                $(".level-3").click(function () {
+                    function t() {
+                        var t = e.css("background-position");
+                        if (e.css("display") == "none" || i == 0) {
+                            clearInterval(n),
+                                    e.css("background-position", "0px 0px");
+                            return
+                        }
+                        switch (t) {
+                            case "0px 0px":
+                                e.css("background-position", "-298px 0px");
+                                break;
+                            case "-298px 0px":
+                                e.css("background-position", "-447px 0px");
+                                break;
+                            case "-447px 0px":
+                                e.css("background-position", "-596px 0px");
+                                break;
+                            case "-596px 0px":
+                                e.css("background-position", "-745px 0px");
+                                break;
+                            case "-745px 0px":
+                                e.css("background-position", "-298px 0px");
+                        }
+                    }
+
+                    if (!i) return;
+                    n = setInterval(t, 50),
+                            $("html,body").animate({scrollTop: 0}, "slow");
+                });
+    });
+
+
+    //// a 标签新页面打开
+    $("#content a").each(function () {
+        $(this).attr('target','_blank');
+        $(this).attr('style','color:#203ada;');
+    })
+
+</script>
+<script type="text/javascript">
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false,   
+        appId: 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz',
+        appKey: 'Itbf11QmS5FNnX7UzEy72OQe',
+        placeholder: 'just go go',
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    //// 生成目录
+    function go(title) {
+        var top = $("#" + title).offset().top;
+        $(document).scrollTop(top - 60);
+    }
+    ;
+    var system = {
+        win: false,
+        mac: false,
+        xll: false,
+        ipad: false
+    };
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+    if ((system.win || system.mac || system.xll || system.ipad)) {
+        //document.writeln('PC')
+        $(function () {
+            var qMenu = '';
+            var title = '';
+            var obj;
+            $('#content').find('h2').each(function (index, item) {
+                obj = $(this).find('a.headerlink').eq(0);
+                title = obj.attr('title');
+                qMenu += '<div class="contenttitle" data="title" onclick="go(\'' + title + '\')">' + index + '、' + title + '</div>';
+            })
+            if (qMenu.length > 0) {
+                qMenu = ' <div><span>目录</span>' + qMenu + '</div>';
+                $('#qMenu').append($(qMenu));
+            }else {
+                $('#qMenu').remove();
+            }
+        });
+    } else {
+        $('#qMenu').remove();
+    }
+</script>
+
 <!-- ============================ Footer =========================== -->
 
 <footer>
