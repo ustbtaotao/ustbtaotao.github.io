@@ -19,7 +19,7 @@
 <head>
     <title>
         
-        react项目中实现在线PDF文件展示 |
+        webpack tsx文件umd打包模块 |
         
         i咖啡</title>
     <!-- Meta data -->
@@ -29,10 +29,10 @@
     <meta name="generator" content="i咖啡">
     <meta name="author" content="ustbtaotao">
     
-    <meta name="keywords" content="reactjs,pdf,react+redux+router+webpack">
+    <meta name="keywords" content="react webpack">
     
     
-    <meta name="description" content="react项目中实现PDF文件展示，支持上下分页,基于es6">
+    <meta name="description" content="react webpack">
     
     <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
     <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
@@ -327,25 +327,25 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
                 <span class="post-meta">
-      <time datetime="2017-07-31T02:08:43.000Z" itemprop="datePublished">
-          2017-07-31
+      <time datetime="2020-07-09T16:00:00.000Z" itemprop="datePublished">
+          2020-07-10
       </time>
     
+       <img src="/img/new.png" style="display: block" class="new"/>
+     
     
     
     | 
-    <a href='/tags/reactjs/'>reactjs</a>,
-    
-    <a href='/tags/javascript/'>javascript</a>
+    <a href='/tags/webpack/'>webpack</a>
     
     
     <br />
-    字数:<span class="post-count">581</span>
+    字数:<span class="post-count">506</span>
 </span>
                 阅读数:
-                <span id="/reactjs/reactpdf.html" data_time="Mon Jul 31 2017 10:08:43 GMT+0800" class="leancloud_visitors" data-flag-title="react项目中实现在线PDF文件展示"></span>次
+                <span id="/webpack/reactwebpack3.html" data_time="Fri Jul 10 2020 00:00:00 GMT+0800" class="leancloud_visitors" data-flag-title="webpack tsx文件umd打包模块"></span>次
                 
-                <h1>react项目中实现在线PDF文件展示</h1>
+                <h1>webpack tsx文件umd打包模块</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
@@ -359,32 +359,19 @@
                 <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
                 <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
             <div style="margin-top: 10px;" id="content">
-                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>最近在做一个项目，需求是要在移动客户端：安卓和ios上在线展现pdf文件，并支持上下分页。经过多方多次探索<br>实现的都不是很理想，要想在react项目（react+redux+router+webpack）中实现pdf加载并显示就这么费劲么？<br>最后的最后抱着试试看的心理在npm官方搜到了一款叫<a href="https://www.npmjs.com/package/react-pdf" target="_blank" rel="noopener">react-pdf</a>的插件，<br><code>Use by adding <reactpdf file="...">. file can be an URL, base64 content, Uint8Array, and more.</reactpdf></code><br>看介绍应该可以实现吧，试试？</p>
-<h2 id="试试"><a href="#试试" class="headerlink" title="试试"></a>试试</h2><ul>
-<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-pdf --save</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import ReactPDF from &apos;react-pdf&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>usage</p>
-<p>我们先用本地文件试试，temp=’./sample.pdf’.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ReactPDF file=&#123;temp&#125; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>发现本地环境可以打开，但是有几个问题：<br>1、只能显示一页，不能翻页；<br>2、手机页面显示太小，看不清楚；<br>3、当连上Url网络pdf资源时，跨域问题；<br>4、应用站点是https的，但是pdf url资源是http的，跨协议问题；<br>5、原接口返回的是html含 iframe dom结构的字符串，没法直接提取url地址</p>
-<ul>
-<li>解决</li>
-</ul>
-<p>针对上述几个问题，我们一个一个进行解决</p>
-<p>1、看官方api，支持pageindex设置，所以我们可以设计两个按钮去实现翻页或者利用harmmerjs手势上线触屏分页，根据UI设计我们最终用按钮分页。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;ReactPDF file=&#123;temp&#125; key=&quot;pdf&quot; width=&#123;window.innerWidth * this.state.pdfscale&#125;</span><br><span class="line"> onDocumentLoad=&#123;this.onDocumentLoad&#125;</span><br><span class="line">     onPageLoad=&#123;this.onPageLoad&#125; pageIndex=&#123;this.state.pdfcurrentIndx&#125; scale=&#123;this.state.pdfscale&#125;</span><br><span class="line">     loading=&#123;&lt;LoadingView icon=&apos;loading&apos; show=&#123;true&#125; text=&apos;正在加载pdf&apos;/&gt;&#125;/&gt;</span><br><span class="line">&#123;this.state.pdftotal &gt;= 2 &amp;&amp;</span><br><span class="line">   &lt;div className=&quot;pdfnavbar&quot;&gt;</span><br><span class="line">      &lt;span onClick=&#123;this.nextpage.bind(this, -1)&#125; className=&quot;pre&quot;&gt;&lt;img</span><br><span class="line">        src=&#123;this.state.pdfnav.left&#125;/&gt;&lt;/span&gt;</span><br><span class="line">      &#123;this.state.pageNumber + &apos;/&apos; + this.state.pdftotal&#125;</span><br><span class="line">      &lt;span onClick=&#123;this.nextpage.bind(this, 1)&#125; className=&quot;next&quot;&gt;&lt;img</span><br><span class="line">        src=&#123;this.state.pdfnav.right&#125;/&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  <img src="/image/react/pdf1.jpeg" alt="pdf1"></p>
-<p>2、我们利用点击事件，对原pdf进行1、1.2、1.5倍率进行轮询放大；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">G_ClickNum=0;</span><br><span class="line">togglePDFScsle() &#123;</span><br><span class="line">    G_ClickNum++;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      clickNum: G_ClickNum,</span><br><span class="line">      pdfscale: G_Pdfscale[G_ClickNum % 3],</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>3、临时修改本地host文件；<br>4、利用nginx，搭建https转发代理，前端url调用改为nginx代理的https站点；<br>5、使用正则表达式，对pdf进行提取<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pdfurl = data.match(/&lt;iframe\s*.*?src=&quot;[a-zA-z]+:\/\/[^\s]*.pdf/);</span><br><span class="line">      if (pdfurl !== null) &#123;</span><br><span class="line">        pdfurl = pdfurl[0].match(/[a-zA-z]+:\/\/[^\s]*.pdf/)[0].replace(&apos;http://xxxtest.yyyy.com&apos;,</span><br><span class="line">          &apos;https://xxx.m.yyyy.com&apos;);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p> x1<br>  <img src="/image/react/pdf2.jpeg" alt="pdf2"><br> x1.2<br>  <img src="/image/react/pdf3.jpeg" alt="pdf3"><br> x1.5<br>  <img src="/image/react/pdf4.jpeg" alt="pdf4"></p>
+                <p>熟悉前端开发的小伙伴，可能会经常遇到代码模块化，代码复用的问题。通常的做法比如es6项目中export，然后import，<br>cmd项目中 module.exports 然后require。比如跨项目的话我们可以用node npm发布一个node_module到npm库。<br>这里介绍一种更通用的方法。</p>
+<p>借助<a href="https://webpack.docschina.org/configuration/output/#outputlibrary" target="_blank" rel="noopener">webpack output 打包模块化组件</a>可以方便的实现，</p>
+<h2 id="demo走起"><a href="#demo走起" class="headerlink" title="demo走起"></a>demo走起</h2><p>我们先typescript写个公共模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">umd.tsx</span><br><span class="line">-------</span><br><span class="line">function initUmd()&#123;</span><br><span class="line">    console.log(&apos;it is init&apos;);</span><br><span class="line">    return &apos;back it is init&apos;;</span><br><span class="line">&#125;</span><br><span class="line">const umdTest = &#123;</span><br><span class="line">    constUmd: &quot;constUmd&quot;,</span><br><span class="line">    initUmd</span><br><span class="line">&#125;</span><br><span class="line">export default umdTest;</span><br></pre></td></tr></table></figure></p>
+<p>功能很简单，一个公共变量constUmd，一个公共方法initUmd；<br>然后我们要在别的项目中使用怎么破？</p>
+<h2 id="webpack-配置"><a href="#webpack-配置" class="headerlink" title="webpack 配置"></a>webpack 配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">webpack.config.umd.js</span><br><span class="line">------</span><br><span class="line">const path = require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    mode:&quot;development&quot;,</span><br><span class="line">    entry: &quot;./src/umd.tsx&quot;,</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        extensions: [&quot;.ts&quot;, &quot;.tsx&quot;, &quot;.js&quot;, &quot;.json&quot;],</span><br><span class="line">    &#125;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        library: &quot;umdTest&quot;,</span><br><span class="line">        libraryTarget:&quot;umd&quot;,</span><br><span class="line">        path: path.resolve(__dirname,&apos;dist&apos;),</span><br><span class="line">        filename: &apos;umdTest.js&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; test: /\.(tsx|ts)?$/, loader: &quot;awesome-typescript-loader&quot; &#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p> 执行 <code>webpack –config webpack/webpack.config.umd.js</code><br> 我们把生成的 umdTest.js拖到git或者自己的服务器上</p>
+<h2 id="引用、使用"><a href="#引用、使用" class="headerlink" title="引用、使用"></a>引用、使用</h2><p>  在第三方项目里我们直接<script src="//youserver.com/umdTest.js?time=13111234324324"></script></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &lt;script&gt;</span><br><span class="line">    const umdTest = window.umdTest.default;</span><br><span class="line">    console.log(umdTest.constUmd);</span><br><span class="line">    const result = umdTest.initUmd();</span><br><span class="line">    console.log(result);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>有个问题 const umdTest = window.umdTest.default; 看着不清爽哇，有招，看webpack的out libraryExport配置，</p>
+<p>修改webpack配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    mode:&quot;development&quot;,</span><br><span class="line">    entry: &quot;./src/umd.tsx&quot;,</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        extensions: [&quot;.ts&quot;, &quot;.tsx&quot;, &quot;.js&quot;, &quot;.json&quot;],</span><br><span class="line">    &#125;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        library: &quot;umdTest&quot;,</span><br><span class="line">        libraryTarget:&quot;umd&quot;,</span><br><span class="line">        path: path.resolve(__dirname,&apos;dist&apos;),</span><br><span class="line">        filename: &apos;umdTest.js&apos;,</span><br><span class="line">        libraryExport: &apos;default&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; test: /\.(tsx|ts)?$/, loader: &quot;awesome-typescript-loader&quot; &#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>然后我们的使用姿势就会变成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  &lt;script&gt;</span><br><span class="line">    const umdTest = window.umdTest;</span><br><span class="line">    console.log(umdTest.constUmd);</span><br><span class="line">    const result = umdTest.initUmd();</span><br><span class="line">    console.log(result);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>基于此思路，我们可以实现react vue等前端项目的微服务模块话，我们的被引用部分其实输出的就是 一个方法<br>，此方法执行的是类似 <code>ReactDOM.render(<app>,document.getElementById(“app”))</app></code></p>
 
                 <div style="margin-top:15px;">
                    <hr class="nogutter">
@@ -414,13 +401,9 @@
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/reactjs/reactdatepicker.html" style="float: left;">
-        ← react自定义时间组件
-    </a>
     
-    
-    <a class="pull-right" href="/nodejs/nodeapidoc.html">
-        如何快速生成api文档，并支持http访问 →
+    <a class="pull-right" href="/reactjs/reactaudio2.html">
+        react项目中实现音频播放,自定义UI →
     </a>
     
 </nav>

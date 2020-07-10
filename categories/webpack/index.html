@@ -19,7 +19,7 @@
 <head>
     <title>
         
-        react项目中实现在线PDF文件展示 |
+        Category: webpack |
         
         i咖啡</title>
     <!-- Meta data -->
@@ -29,10 +29,10 @@
     <meta name="generator" content="i咖啡">
     <meta name="author" content="ustbtaotao">
     
-    <meta name="keywords" content="reactjs,pdf,react+redux+router+webpack">
+    <meta name="keywords" content="webpack,i咖啡,博客,reactjs,react,node,nodejs,mobile,javascript,.net,前端开发">
     
     
-    <meta name="description" content="react项目中实现PDF文件展示，支持上下分页,基于es6">
+    <meta name="description" content="webpack:欢迎来到icafe咖啡屋,这里虽然没有咖啡的浓香,但是你可以端起一杯浓浓的咖啡来坐坐,停留片刻,交流下经验。每天积累一点点,就能进步一丢丢">
     
     <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
     <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
@@ -71,7 +71,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -321,248 +321,73 @@
     <!-- ============================ Header & Logo bar =========================== -->
 
 
+<!-- ============================ Hero Image =========================== -->
 
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-                <span class="post-meta">
-      <time datetime="2017-07-31T02:08:43.000Z" itemprop="datePublished">
-          2017-07-31
-      </time>
-    
-    
-    
-    | 
-    <a href='/tags/reactjs/'>reactjs</a>,
-    
-    <a href='/tags/javascript/'>javascript</a>
-    
-    
-    <br />
-    字数:<span class="post-count">581</span>
-</span>
-                阅读数:
-                <span id="/reactjs/reactpdf.html" data_time="Mon Jul 31 2017 10:08:43 GMT+0800" class="leancloud_visitors" data-flag-title="react项目中实现在线PDF文件展示"></span>次
-                
-                <h1>react项目中实现在线PDF文件展示</h1>
-            </div>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
-            <div class="bshare-custom" style="float: right;">
-                <div class="bsPromo bsPromo2"></div>
-                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
-                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
-                <a title="分享到QQ空间" class="bshare-qzone"></a>
-                <a title="分享到人人网" class="bshare-renren"></a>
-                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
-                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
-                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
-            <div style="margin-top: 10px;" id="content">
-                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>最近在做一个项目，需求是要在移动客户端：安卓和ios上在线展现pdf文件，并支持上下分页。经过多方多次探索<br>实现的都不是很理想，要想在react项目（react+redux+router+webpack）中实现pdf加载并显示就这么费劲么？<br>最后的最后抱着试试看的心理在npm官方搜到了一款叫<a href="https://www.npmjs.com/package/react-pdf" target="_blank" rel="noopener">react-pdf</a>的插件，<br><code>Use by adding <reactpdf file="...">. file can be an URL, base64 content, Uint8Array, and more.</reactpdf></code><br>看介绍应该可以实现吧，试试？</p>
-<h2 id="试试"><a href="#试试" class="headerlink" title="试试"></a>试试</h2><ul>
-<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-pdf --save</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>引用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import ReactPDF from &apos;react-pdf&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>usage</p>
-<p>我们先用本地文件试试，temp=’./sample.pdf’.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ReactPDF file=&#123;temp&#125; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>发现本地环境可以打开，但是有几个问题：<br>1、只能显示一页，不能翻页；<br>2、手机页面显示太小，看不清楚；<br>3、当连上Url网络pdf资源时，跨域问题；<br>4、应用站点是https的，但是pdf url资源是http的，跨协议问题；<br>5、原接口返回的是html含 iframe dom结构的字符串，没法直接提取url地址</p>
-<ul>
-<li>解决</li>
-</ul>
-<p>针对上述几个问题，我们一个一个进行解决</p>
-<p>1、看官方api，支持pageindex设置，所以我们可以设计两个按钮去实现翻页或者利用harmmerjs手势上线触屏分页，根据UI设计我们最终用按钮分页。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;ReactPDF file=&#123;temp&#125; key=&quot;pdf&quot; width=&#123;window.innerWidth * this.state.pdfscale&#125;</span><br><span class="line"> onDocumentLoad=&#123;this.onDocumentLoad&#125;</span><br><span class="line">     onPageLoad=&#123;this.onPageLoad&#125; pageIndex=&#123;this.state.pdfcurrentIndx&#125; scale=&#123;this.state.pdfscale&#125;</span><br><span class="line">     loading=&#123;&lt;LoadingView icon=&apos;loading&apos; show=&#123;true&#125; text=&apos;正在加载pdf&apos;/&gt;&#125;/&gt;</span><br><span class="line">&#123;this.state.pdftotal &gt;= 2 &amp;&amp;</span><br><span class="line">   &lt;div className=&quot;pdfnavbar&quot;&gt;</span><br><span class="line">      &lt;span onClick=&#123;this.nextpage.bind(this, -1)&#125; className=&quot;pre&quot;&gt;&lt;img</span><br><span class="line">        src=&#123;this.state.pdfnav.left&#125;/&gt;&lt;/span&gt;</span><br><span class="line">      &#123;this.state.pageNumber + &apos;/&apos; + this.state.pdftotal&#125;</span><br><span class="line">      &lt;span onClick=&#123;this.nextpage.bind(this, 1)&#125; className=&quot;next&quot;&gt;&lt;img</span><br><span class="line">        src=&#123;this.state.pdfnav.right&#125;/&gt;&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  <img src="/image/react/pdf1.jpeg" alt="pdf1"></p>
-<p>2、我们利用点击事件，对原pdf进行1、1.2、1.5倍率进行轮询放大；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">G_ClickNum=0;</span><br><span class="line">togglePDFScsle() &#123;</span><br><span class="line">    G_ClickNum++;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      clickNum: G_ClickNum,</span><br><span class="line">      pdfscale: G_Pdfscale[G_ClickNum % 3],</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>3、临时修改本地host文件；<br>4、利用nginx，搭建https转发代理，前端url调用改为nginx代理的https站点；<br>5、使用正则表达式，对pdf进行提取<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pdfurl = data.match(/&lt;iframe\s*.*?src=&quot;[a-zA-z]+:\/\/[^\s]*.pdf/);</span><br><span class="line">      if (pdfurl !== null) &#123;</span><br><span class="line">        pdfurl = pdfurl[0].match(/[a-zA-z]+:\/\/[^\s]*.pdf/)[0].replace(&apos;http://xxxtest.yyyy.com&apos;,</span><br><span class="line">          &apos;https://xxx.m.yyyy.com&apos;);</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p> x1<br>  <img src="/image/react/pdf2.jpeg" alt="pdf2"><br> x1.2<br>  <img src="/image/react/pdf3.jpeg" alt="pdf3"><br> x1.5<br>  <img src="/image/react/pdf4.jpeg" alt="pdf4"></p>
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div style="margin-top: 25%;">
+                        
+                        <h2 style="color: #ffffff">WELCOME TO <span>MY HOME</span>, PLEASE READING AND SHARING.</h2>
+                        <p style="color: #e6d1d1"></p>
+                        
+                        <h2 style="color: #ffffff"></h2>
+                        <p style="color: #e6d1d1">每天积累一点点,就能进步一丢丢。</p>
+                        
 
-                <div style="margin-top:15px;">
-                   <hr class="nogutter">
-                   <h3>^-^欢迎回复交流^-^</h3>
-                    <div id="comment" class='cloudcomment'></div>
+                    </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-            <div class="bshare-custom" style="float: right;margin-bottom: 10px">
-                <div class="bsPromo bsPromo2"></div>
-                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
-                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
-                <a title="分享到QQ空间" class="bshare-qzone"></a>
-                <a title="分享到人人网" class="bshare-renren"></a>
-                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
-                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
-                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
-            <div class="dashang">
-                <div class="title">赏点咖啡钱^.^</div>
-                <img src="/img/wchat.jpeg"/><img src="/img/zhifubao.png"/>
-            </div>
-            <div style="display: none;" id="rocket-to-top">
-                <div style="opacity:0.3;display: block;" class="level-2"></div>
-                <div class="level-3"></div>
-            </div>
+            <!-- // .col-md-12 -->
         </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/reactjs/reactdatepicker.html" style="float: left;">
-        ← react自定义时间组件
-    </a>
-    
-    
-    <a class="pull-right" href="/nodejs/nodeapidoc.html">
-        如何快速生成api文档，并支持http访问 →
-    </a>
-    
-</nav>
-
+        <div class="herofade beige-dk"></div>
     </div>
 </section>
 
-<div id="qMenu" class="qmenu">
-    <div class="sb-close" aria-label="Close Menu" aria-hidden="true" onclick="javacript:void(0);$('#qMenu').hide();">
-        <img src="/img/close.png" alt="Close">
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
+
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/webpack/reactwebpack3.html">webpack tsx文件umd打包模块<br/><span style="color:#948989;font-size: 14px;">react webpack</span></a></h4>
+                            
+                            <p><time datetime="2020-07-09T16:00:00.000Z"><a href="/webpack/reactwebpack3.html">2020-07-10</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination" style="width: 80%">
+            
+            
+        </nav>
     </div>
-</div>
-<script type="text/javascript" charset="utf-8"
-        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
-<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-<script src="../../js/av-min.js"></script>
-<script src="../../js/Valine.min.js"></script>
-<script src=''></script>
-<script type="text/javascript">
-    //// 小火箭
-    $(function () {
-        var e = $("#rocket-to-top"),
-                t = $(document).scrollTop(),
-                n,
-                r,
-                i = !0;
-        $(window).scroll(function () {
-            var t = $(document).scrollTop();
-            t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
-                        marginTop: "-1000px"
-                    },
-                    "normal",
-                    function () {
-                        e.css({
-                            "margin-top": "-125px",
-                            display: "none"
-                        }),
-                                i = !0
-                    })) : e.fadeIn("slow")
-        }),
-                e.hover(function () {
-                            $(".level-2").stop(!0).animate({
-                                opacity: 1
-                            })
-                        },
-                        function () {
-                            $(".level-2").stop(!0).animate({
-                                opacity: 0
-                            })
-                        }),
-                $(".level-3").click(function () {
-                    function t() {
-                        var t = e.css("background-position");
-                        if (e.css("display") == "none" || i == 0) {
-                            clearInterval(n),
-                                    e.css("background-position", "0px 0px");
-                            return
-                        }
-                        switch (t) {
-                            case "0px 0px":
-                                e.css("background-position", "-298px 0px");
-                                break;
-                            case "-298px 0px":
-                                e.css("background-position", "-447px 0px");
-                                break;
-                            case "-447px 0px":
-                                e.css("background-position", "-596px 0px");
-                                break;
-                            case "-596px 0px":
-                                e.css("background-position", "-745px 0px");
-                                break;
-                            case "-745px 0px":
-                                e.css("background-position", "-298px 0px");
-                        }
-                    }
+</section> 
 
-                    if (!i) return;
-                    n = setInterval(t, 50),
-                            $("html,body").animate({scrollTop: 0}, "slow");
-                });
-    });
-
-
-    //// a 标签新页面打开
-    $("#content a").each(function () {
-        $(this).attr('target','_blank');
-        $(this).attr('style','color:#203ada;');
-    })
-
-</script>
-<script type="text/javascript">
-    new Valine({
-        el: '#comment' ,
-        notify:false, 
-        verify:false,   
-        appId: 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz',
-        appKey: 'Itbf11QmS5FNnX7UzEy72OQe',
-        placeholder: 'just go go',
-        path:window.location.pathname, 
-        avatar:'mm' 
-    });
-    //// 生成目录
-    function go(title) {
-        var top = $("#" + title).offset().top;
-        $(document).scrollTop(top - 60);
-    }
-    ;
-    var system = {
-        win: false,
-        mac: false,
-        xll: false,
-        ipad: false
-    };
-    //检测平台
-    var p = navigator.platform;
-    system.win = p.indexOf("Win") == 0;
-    system.mac = p.indexOf("Mac") == 0;
-    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-    system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
-    if ((system.win || system.mac || system.xll || system.ipad)) {
-        //document.writeln('PC')
-        $(function () {
-            var qMenu = '';
-            var title = '';
-            var obj;
-            $('#content').find('h2').each(function (index, item) {
-                obj = $(this).find('a.headerlink').eq(0);
-                title = obj.attr('title');
-                qMenu += '<div class="contenttitle" data="title" onclick="go(\'' + title + '\')">' + index + '、' + title + '</div>';
-            })
-            if (qMenu.length > 0) {
-                qMenu = ' <div><span>目录</span>' + qMenu + '</div>';
-                $('#qMenu').append($(qMenu));
-            }else {
-                $('#qMenu').remove();
-            }
-        });
-    } else {
-        $('#qMenu').remove();
-    }
-</script>
-
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p></p>
+        </div>
+    </div>
+</section>
 <!-- ============================ Footer =========================== -->
 
 <footer>
