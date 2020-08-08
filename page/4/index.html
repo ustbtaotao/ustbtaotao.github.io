@@ -130,7 +130,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(26)</small>
+                        <small>(27)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -162,7 +162,7 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(27)</small>
+                        <small>(28)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
@@ -173,19 +173,19 @@
                         <small>(1)</small>
                     </a></li>
                 
-                <li><a href="/tags/other/" class="animsition-link">其他
-                        <small>(3)</small>
-                    </a></li>
-                
-                <li><a href="/tags/git/" class="animsition-link">git
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/hexo/" class="animsition-link">hexo
                         <small>(7)</small>
                     </a></li>
                 
                 <li><a href="/tags/es6/" class="animsition-link">es6
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/other/" class="animsition-link">其他
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/git/" class="animsition-link">git
                         <small>(1)</small>
                     </a></li>
                 
@@ -198,7 +198,7 @@
                     </a></li>
                 
                 <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(22)</small>
+                        <small>(23)</small>
                     </a></li>
                 
                 <li><a href="/tags/linux/" class="animsition-link">linux
@@ -211,6 +211,10 @@
                 
                 <li><a href="/tags/nodejs/" class="animsition-link">nodejs
                         <small>(19)</small>
+                    </a></li>
+                
+                <li><a href="/tags/canvas/" class="animsition-link">canvas
+                        <small>(1)</small>
                     </a></li>
                 
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
@@ -353,6 +357,49 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/nodejs/nodelimit.html">nodejs api限制请求次数</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2017-06-27T00:50:40.000Z" itemprop="datePublished">
+          2017-06-27
+      </time>
+    
+    
+    
+    | 
+    <a href='/tags/javascript/'>javascript</a>,
+    
+    <a href='/tags/nodejs/'>nodejs</a>
+    
+    
+    <br />
+    字数:<span class="post-count">417</span>
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        说明最近实际项目中遇到了一个需求:现在api的单位时间内请求次数,如果熟悉微信接口的童鞋,会发现当你请求过于频繁的时候会有报错信息,类似你太快之类的。说明下项目是基于express 实现的api平台。比如要求我们1hour内不能频繁连续请求次,该如何实现呢?
+实现经过苦苦寻找,终于找到了一款express的中间件 express-rate-limit,阅读完api之后,发现很简单,但是原理是什么,好使么?让我们走起
+
+insta
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/nodejs/nodelimit.html">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -798,45 +845,6 @@ redux 部分
                     
                     <p class="pull-right readMore">
                         <a href="/nodejs/nodees6.html">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/nodejs/nodenice.html">nodejs性能优化</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2017-06-02T00:50:40.000Z" itemprop="datePublished">
-          2017-06-02
-      </time>
-    
-    
-    
-    | 
-    <a href='/tags/nodejs/'>nodejs</a>
-    
-    
-    <br />
-    字数:<span class="post-count">743</span>
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        说明nodejs项目典型的框架就是express,成熟上手快,middware丰富等优点让大家爱不释手,如果只是简简单单的实现功能,相信大家很多人都能搞定,但是即使是同一个功能或者服务,不用人写出来部署上线后的表现却不尽相同,这就是我们说的性能:当然有人会说是服务器问题,也有人说是网络问题,当然都不希望是自己的编码问题。这里我们就说说我们的问题:在项目实现的工程中,遇到的各种性能相关的技巧。
-parallel大家都知道nodejs最擅长
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/nodejs/nodenice.html">Read More...</a>
                     </p>
                     
                 </div>
