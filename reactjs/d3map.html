@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <title>
+        
+        react项目中基于d3.js实现炫酷的中国地图 |
+        
+        i咖啡</title>
+    <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="generator" content="i咖啡">
+    <meta name="author" content="ustbtaotao">
+    
+    <meta name="keywords" content="reactjs,d3.js,d3,tooltip">
+    
+    
+    <meta name="description" content="react项目中基于canvas实现环形图表">
+    
+    <meta name="wumiiVerification" content="7ae830d3-0185-462c-9371-29173dc04418"/>
+    <meta name="baidu_union_verify" content="325fd53fb77cfb471e02dc44b9106274">
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href=" /atom.xml "
+          title="i咖啡" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css"/>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <script src="/js/search.js"></script>
+    <![endif]-->
+
+    
+    
+    
+    <style>.col-md-8.col-md-offset-2.opening-statement img {
+            display: none;
+        }</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+<!-- ============================ Off-canvas navigation =========================== -->
+
+<div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling" xmlns="http://www.w3.org/1999/html"
+ style="background-color: rgba(21, 21, 21, 0.88);"
+>
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+        <img src="/img/close.png" alt="Close"/>
+    </div>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu">
+        <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+        <li><a href="/archives" class="animsition-link" title="archive">所有文章</a>
+        </li>
+        <!-- Dropdown Menu -->
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">按分类<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/categories/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/categories/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/categories/javascript/" class="animsition-link">javascript
+                        <small>(6)</small>
+                    </a></li>
+                
+                <li><a href="/categories/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/categories/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/categories/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/categories/nodejs/" class="animsition-link">nodejs
+                        <small>(18)</small>
+                    </a></li>
+                
+                <li><a href="/categories/reactjs/" class="animsition-link">reactjs
+                        <small>(28)</small>
+                    </a></li>
+                
+                <li><a href="/categories/svn/" class="animsition-link">svn
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/webpack/" class="animsition-link">webpack
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/other/" class="animsition-link">其他
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/categories/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu" id="tabs">按标签<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="/tags/reactjs/" class="animsition-link">reactjs
+                        <small>(29)</small>
+                    </a></li>
+                
+                <li><a href="/tags/component/" class="animsition-link">组件
+                        <small>(5)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(24)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/electron/" class="animsition-link">electron
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/other/" class="animsition-link">其他
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/git/" class="animsition-link">git
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/hexo/" class="animsition-link">hexo
+                        <small>(7)</small>
+                    </a></li>
+                
+                <li><a href="/tags/html/" class="animsition-link">html
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/kettle/" class="animsition-link">kettle
+                        <small>(4)</small>
+                    </a></li>
+                
+                <li><a href="/tags/linux/" class="animsition-link">linux
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/mongo/" class="animsition-link">mongo
+                        <small>(10)</small>
+                    </a></li>
+                
+                <li><a href="/tags/nodejs/" class="animsition-link">nodejs
+                        <small>(19)</small>
+                    </a></li>
+                
+                <li><a href="/tags/canvas/" class="animsition-link">canvas
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/highchart/" class="animsition-link">highchart
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/jquery/" class="animsition-link">jquery
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/webpack/" class="animsition-link">webpack
+                        <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/svn/" class="animsition-link">svn
+                        <small>(2)</small>
+                    </a></li>
+                
+                <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/baby/" class="animsition-link">小小接班人
+                        <small>(1)</small>
+                    </a></li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a class="sb-toggle-submenu">友情链接<span class="sb-caret"></span></a>
+            <ul class="sb-submenu">
+                
+                <li><a href="http://tool.chinaz.com/" target="_blank" >站长工具</a></li>
+                
+                <li><a href="http://www.weishao.com.cn/" target="_blank" >锐捷网络_微哨</a></li>
+                
+                <li><a href=" http://www.pangshunlong.com/" target="_blank" >庞顺龙的博客</a></li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+    <!-- Lists in Slidebars -->
+    <ul class="sb-menu secondary">
+        <li><a href="http://www.icafebolger.comabout.html" class="animsition-link" title="about">About</a></li>
+        <li style="display: none;"><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+    </ul>
+</div>
+
+<!-- ============================ END Off-canvas navigation =========================== -->
+
+<!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+<div id="sb-site">
+    <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+    <div id="navigation" class="navbar navbar-fixed-top">
+        <div id="site_search" class="sitesearch">
+            <div class="form-group">
+                <input type="text" id="local-search-input" name="q" results="0" placeholder="search"
+                       class="st-search-input st-default-search-input form-control"/>
+            </div>
+            <div id="local-search-result" class="searchresult"></div>
+        </div>
+        <div class="navbar-inner" style="background-color: #e8acac;">
+            <div class="container">
+                <!-- Nav logo -->
+                <div class="logo">
+                    <a href="/" title="Logo" class="animsition-link">
+                        
+                        <img src="/img/logo.png" alt="Logo" width="35px;"/>
+                        
+                    </a>
+                </div>
+                <!-- // Nav logo -->
+                <!-- Info-bar -->
+                <nav>
+                    <ul class="nav">
+                        <li><a href="/" class="animsition-link" style="color: #ffffff;">i咖啡</a></li>
+                        
+                        
+                        <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank" style="color: #ffffff;"><i
+                                        class="icon-sina-weibo" style="color: #ffffff;"></i>微博</a></li>
+                        
+                        <li class="nolink" style="color: #ffffff;"><span>Welcome!</span></li>
+                    </ul>
+                </nav>
+                <!--// Info-bar -->
+            </div>
+            <!-- // .container -->
+            <div class="learnmore sb-toggle-right" style="display: none;">More</div>
+            <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+            </button>
+        </div>
+        <!-- // .navbar-inner -->
+    </div>
+
+    <!-- ============================ Header & Logo bar =========================== -->
+
+
+
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+                <span class="post-meta">
+      <time datetime="2020-10-10T07:08:43.000Z" itemprop="datePublished">
+          2020-10-10
+      </time>
+    
+       <img src="/img/new.png" style="display: block" class="new"/>
+     
+    
+    
+    | 
+    <a href='/tags/reactjs/'>reactjs</a>,
+    
+    <a href='/tags/javascript/'>javascript</a>,
+    
+    <a href='/tags/d3-js/'>d3.js</a>
+    
+    
+    <br />
+    字数:<span class="post-count">1,873</span>
+</span>
+                阅读数:
+                <span id="/reactjs/d3map.html" data_time="Sat Oct 10 2020 15:08:43 GMT+0800" class="leancloud_visitors" data-flag-title="react项目中基于d3.js实现炫酷的中国地图"></span>次
+                
+                <h1>react项目中基于d3.js实现炫酷的中国地图</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="bshare-custom" style="float: right;">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div style="margin-top: 10px;" id="content">
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>最近项目需要按照中国地图区域进行展示数据，按照颜色的深浅来表示实际数据的大小，并且在鼠标浮动的时候显示具体的省份名称和其数量，<br>搜寻了一圈 hightchart, echart, viser,bizchart 均不能满足产品的需要，只能自己搞了。先看下效果：</p>
+<p>效果图如下<br> <img src="/image/d3/map.jpeg" alt="0"></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>1、基石：我们选择d3.js 为我们提供了强大的svg画图功能<br>2、地图数据: 寻寻觅觅发现一款工具<a href="http://datav.aliyun.com/tools/atlas/#&amp;lat=31.840232667909365&amp;lng=104.32617187499999&amp;zoom=4" target="_blank" rel="noopener">datav</a>，<br>   可以快速的导出我们想要的区域地图的geojson结构<br>3、实际业务数据的映射<br>4、鼠标浮动的交互</p>
+<hr>
+<p>先画地图，画地图之前我们先看下geojson的结构，<br>由于下载下来的geojson中，南海群岛是和整体地图纵向排列的，而产品实际需要将其展示在地图的左侧：哭！。于是乎曲线救国，发现群岛的数据<br>中<code>properties.name</code>为空，以及最外侧的虚线是在海南省path[0]以为的数据中。发现了其path路径就好办了，先画整体地图，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mapData = ChinaJson.features.filter((m) =&gt; m.properties.name);</span><br><span class="line">mapData = mapData.map((item) =&gt; &#123;</span><br><span class="line">    if (item.properties.name === &quot;海南省&quot;) &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            ...item,</span><br><span class="line">            geometry: &#123;</span><br><span class="line">                ...item.geometry,</span><br><span class="line">                coordinates: [item.geometry.coordinates[0]],</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">        ...item,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>过滤出除南海群岛以外的json数据，同理画左侧南海群岛的时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ChinaJson.features.filter((m) =&gt; m.properties.name === &quot;海南省&quot; || !m.properties.name)</span><br></pre></td></tr></table></figure></p>
+<p>过滤出南海群岛和海南省的数据。</p>
+<p>有了地图数据，下面就是d3大显身手的时候了</p>
+<ul>
+<li><p>先创建一个svg元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let svg = d3</span><br><span class="line">            .select(&quot;#&quot; + id)</span><br><span class="line">            .append(&quot;svg&quot;)</span><br><span class="line">            .attr(&quot;width&quot;, width)</span><br><span class="line">            .attr(&quot;height&quot;, height);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用d3 和json生成path路径值</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//生成路径生成器</span><br><span class="line"> generatePath(scale, width, height) &#123;</span><br><span class="line">     let self = this;</span><br><span class="line">     let projection = self.generateProjection(scale, width, height);</span><br><span class="line">     return d3.geoPath().projection(projection);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"> generateProjection(scale, width, height) &#123;</span><br><span class="line">     return d3</span><br><span class="line">         .geoMercator()</span><br><span class="line">         .center([105, 31])</span><br><span class="line">         .scale(scale)</span><br><span class="line">         .translate([width / 2, height / 2 + 5]);</span><br><span class="line"> &#125;</span><br><span class="line">let self = this;</span><br><span class="line">let path = self.generatePath(255, width, height);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>准备业务数据<br>格式 <code>[{name:”北京市”, value: 200},…]</code><br>整个地图的色域从浅到深我们可以通过js方法动态生成，但是需要解决一个同样的值的时候，色值应该是一样的才对。<br>可以先将业务数据利用value进行group分组，每个分组的色值是一样的即可，再进行从大到小排序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">let &#123; data = [] &#125; = this.props;</span><br><span class="line">       const _data = groupBy(data, &quot;value&quot;);</span><br><span class="line">       let i = -1;</span><br><span class="line">       let tempData = [];</span><br><span class="line">       Object.keys(_data).forEach((k) =&gt; &#123;</span><br><span class="line">           i++;</span><br><span class="line">           _data[k] = _data[k].map((d) =&gt; (&#123;</span><br><span class="line">               ...d,</span><br><span class="line">               idx: i,</span><br><span class="line">           &#125;));</span><br><span class="line">           tempData.push(..._data[k]);</span><br><span class="line">       &#125;);</span><br><span class="line">       data = tempData;</span><br><span class="line">       data.sort((a, b) =&gt; b.value - a.value);</span><br><span class="line">       //按照实际业务数据大小生成渐变色数组</span><br><span class="line">       const colors = gradientColor(&quot;#23F1FF&quot;, &quot;#032352&quot;, data.length);</span><br><span class="line">       data = data.map((d, i) =&gt; &#123;</span><br><span class="line">           return &#123;</span><br><span class="line">               ...d,</span><br><span class="line">               color: colors[i],</span><br><span class="line">           &#125;;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>画整体地图</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">svg.append(&quot;g&quot;)</span><br><span class="line">            .attr(&quot;fill&quot;, &quot;#032352&quot;)</span><br><span class="line">            .selectAll(&quot;path&quot;)</span><br><span class="line">            .data(mapData)</span><br><span class="line">            .enter()</span><br><span class="line">            .append(&quot;path&quot;)</span><br><span class="line">            .attr(&quot;stroke&quot;, &quot;#21E4FF&quot;)</span><br><span class="line">            .attr(&quot;stroke-width&quot;, 1)</span><br><span class="line">            .attr(&quot;fill&quot;, function (d, i) &#123;</span><br><span class="line">                // data为实际的业务数据，name为关键字和地图json 进行匹配</span><br><span class="line">                const cur = data.find((_d) =&gt; _d.name === d.properties.name);</span><br><span class="line">                return (cur &amp;&amp; cur.color) || &quot;#032352&quot;;</span><br><span class="line">            &#125;)</span><br><span class="line">            .attr(&quot;d&quot;, path)</span><br><span class="line">            .attr(&quot;style&quot;, &quot;opacity:0.6&quot;)</span><br></pre></td></tr></table></figure>
+<p> 效果图<br> <img src="/image/d3/map1.jpeg" alt="2"></p>
+<ul>
+<li><p>画群岛地图<br>方法同画整体，只是用一些css3的样式，将其移动到合适的位置即可<br>效果图<br><img src="/image/d3/map2.jpeg" alt="2"></p>
+</li>
+<li><p>添加交互<br>鼠标移到具体省份后，需要从当前省份的固定中心开始画折线到地图上方固定位置，直接用d3 path就可以，终点固定，拐点也是固定的，只要解决起点的问题接口，<br>有两种思路，一种是利用d3提供的求几何中心的方法</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getBoundingBoxCenter(selection) &#123;</span><br><span class="line">       // get the DOM element from a D3 selection</span><br><span class="line">       // you could also use &quot;this&quot; inside .each()</span><br><span class="line">       let element = selection.node();</span><br><span class="line">       // use the native SVG interface to get the bounding box</span><br><span class="line">       let bbox = element.getBBox();</span><br><span class="line">       // return the center of the bounding box</span><br><span class="line">       return [bbox.x + bbox.width / 2, bbox.y + bbox.height / 2];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>另一种是利用d3的geoMercator来计算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const projection = d3</span><br><span class="line">            .geoMercator()</span><br><span class="line">            .center([105, 31])</span><br><span class="line">            .scale(255)</span><br><span class="line">            .translate([width / 2, height / 2 + 5]);</span><br><span class="line">//d.properties.center geojson区域中心点</span><br><span class="line">const local = projection(d.properties.center);</span><br></pre></td></tr></table></figure>
+<p>有了三个点，很容易的就可以画出一条并且起点有锚点的折线来，至于固定区域的展示，可以用html div固定在具体位置，通过数据来显隐即可。</p>
+<p>我采用几何中心算法,最终效果<br><img src="/image/d3/map.jpeg" alt="3"></p>
+<p>需要注意几个细节：<br>1、没数据的省份不需要<br>2、鼠标浮动到起始点锚点或者折线的时候，会触发区域的mouseout,导致tip一直在remove-&gt;draw-&gt;remove，一闪一闪的效果不太友好，<br>归根其实就是冒泡的问题，但是查了一圈，d3的冒泡没找到实际性的方法，只能曲线救国，在mouseout的时候判断下<code>d3.event.relatedTarget</code><br>的样式是否包含 map-tip ，如果是说明鼠标到了折线或者锚点的位置，那不销毁tip即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">.on(&quot;mouseover&quot;, function (d) &#123;</span><br><span class="line">                const obj = d3.select(this);</span><br><span class="line">                obj.attr(&quot;style&quot;, &quot;opacity:1&quot;);</span><br><span class="line">                const curName = d.properties.name;</span><br><span class="line">                const cur = data.find((_d) =&gt; _d.name === curName);</span><br><span class="line">                if (!cur) &#123;</span><br><span class="line">                    _that.setState(&#123;</span><br><span class="line">                        tip: &#123;</span><br><span class="line">                            title: &quot;&quot;,</span><br><span class="line">                            value: &quot;&quot;,</span><br><span class="line">                        &#125;,</span><br><span class="line">                    &#125;);</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                //仍在当前区域不再重新渲染</span><br><span class="line">                if (_that.state.tip.title === curName) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                _that.setState(&#123;</span><br><span class="line">                    tip: &#123;</span><br><span class="line">                        title: curName,</span><br><span class="line">                        value: cur.value || 0,</span><br><span class="line">                    &#125;,</span><br><span class="line">                &#125;);</span><br><span class="line">                let [centerX, centerY] = _that.getBoundingBoxCenter(obj);</span><br><span class="line">                // 微调几何中心</span><br><span class="line">                if (curName.indexOf(&quot;内蒙古&quot;) !== -1) &#123;</span><br><span class="line">                    centerY += 15;</span><br><span class="line">                &#125; else if (curName.indexOf(&quot;广东&quot;) !== -1) &#123;</span><br><span class="line">                    centerY -= 5;</span><br><span class="line">                &#125; else if (curName.indexOf(&quot;甘肃&quot;) !== -1) &#123;</span><br><span class="line">                    centerX += 15;</span><br><span class="line">                &#125;</span><br><span class="line">                //画线</span><br><span class="line">                svg.selectAll(&quot;.map-tip-line&quot;).remove();</span><br><span class="line">                svg.selectAll(&quot;.map-tip-line-dot-big&quot;).remove();</span><br><span class="line">                svg.selectAll(&quot;.map-tip-line-dot&quot;).remove();</span><br><span class="line">                svg.append(&quot;g&quot;)</span><br><span class="line">                    .attr(&quot;class&quot;, &quot;map-tip-line&quot;)</span><br><span class="line">                    .append(&quot;path&quot;)</span><br><span class="line">                    .attr(&quot;d&quot;, function (d, index) &#123;</span><br><span class="line">                        let ret = [];</span><br><span class="line">                        ret.push(</span><br><span class="line">                            `M$&#123;centerX - width / 2&#125;`,</span><br><span class="line">                            `$&#123;centerY - height / 2&#125;`,</span><br><span class="line">                            `L0`,</span><br><span class="line">                            `-70`,</span><br><span class="line">                            `L0`,</span><br><span class="line">                            `-90`,</span><br><span class="line">                            `M-22`,</span><br><span class="line">                            `-90`,</span><br><span class="line">                            `L22`,</span><br><span class="line">                            `-90`,</span><br><span class="line">                        );</span><br><span class="line">                        return ret;</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .attr(&quot;stroke&quot;, &quot;#21E4FF&quot;)</span><br><span class="line">                    .attr(&quot;stroke-width&quot;, 1)</span><br><span class="line">                    .attr(&quot;fill&quot;, &quot;none&quot;)</span><br><span class="line">                    .attr(&quot;transform&quot;, &quot;translate(&quot; + width / 2 + &quot;,&quot; + (height / 2 + 5) + &quot;)&quot;);</span><br><span class="line">                svg.append(&quot;g&quot;)</span><br><span class="line">                    .attr(&quot;class&quot;, &quot;map-tip-line-dot&quot;)</span><br><span class="line">                    .attr(&quot;fill&quot;, &quot;#fff&quot;)</span><br><span class="line">                    .append(&quot;circle&quot;)</span><br><span class="line">                    .attr(&quot;class&quot;, &quot;map-tip-line-dot-circle&quot;)</span><br><span class="line">                    .attr(&quot;cx&quot;, centerX - width / 2)</span><br><span class="line">                    .attr(&quot;cy&quot;, centerY - height / 2)</span><br><span class="line">                    .attr(&quot;r&quot;, 2)</span><br><span class="line">                    .attr(&quot;stroke&quot;, &quot;rgba(255,255,255,0.43)&quot;)</span><br><span class="line">                    .attr(&quot;stroke-width&quot;, 1)</span><br><span class="line">                    .attr(&quot;transform&quot;, &quot;translate(&quot; + width / 2 + &quot;,&quot; + (height / 2 + 5) + &quot;)&quot;);</span><br><span class="line">                svg.append(&quot;g&quot;)</span><br><span class="line">                    .attr(&quot;class&quot;, &quot;map-tip-line-dot-big&quot;)</span><br><span class="line">                    .attr(&quot;fill&quot;, &quot;rgba(255,255,255,0.25)&quot;)</span><br><span class="line">                    .append(&quot;circle&quot;)</span><br><span class="line">                    .attr(&quot;class&quot;, &quot;map-tip-line-dot-circle&quot;)</span><br><span class="line">                    .attr(&quot;cx&quot;, centerX - width / 2)</span><br><span class="line">                    .attr(&quot;cy&quot;, centerY - height / 2)</span><br><span class="line">                    .attr(&quot;r&quot;, 4)</span><br><span class="line">                    .attr(&quot;transform&quot;, &quot;translate(&quot; + width / 2 + &quot;,&quot; + (height / 2 + 5) + &quot;)&quot;);</span><br><span class="line">            &#125;)</span><br><span class="line">            .on(&quot;mouseout&quot;, function (d) &#123;</span><br><span class="line">                // 解决区域内tip mouseenter导致的p mouseout</span><br><span class="line">                if (</span><br><span class="line">                    d3.event.relatedTarget &amp;&amp;</span><br><span class="line">                    d3.event.relatedTarget.className &amp;&amp;</span><br><span class="line">                    d3.event.relatedTarget.className.baseVal &amp;&amp;</span><br><span class="line">                    d3.event.relatedTarget.className.baseVal.indexOf(&quot;map-tip&quot;) !== -1</span><br><span class="line">                ) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">                const obj = d3.select(this);</span><br><span class="line">                obj.attr(&quot;style&quot;, &quot;opacity:0.6&quot;);</span><br><span class="line">                svg.selectAll(&quot;.map-tip-line&quot;).remove();</span><br><span class="line">                svg.selectAll(&quot;.map-tip-line-dot-big&quot;).remove();</span><br><span class="line">                svg.selectAll(&quot;.map-tip-line-dot&quot;).remove();</span><br><span class="line">                _that.setState(&#123;</span><br><span class="line">                    tip: &#123;</span><br><span class="line">                        title: &quot;&quot;,</span><br><span class="line">                        value: &quot;&quot;,</span><br><span class="line">                    &#125;,</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加省份文字<br>基于上述的求起点位置的方法，我们已经求出了中心问题，剩下的就d3.text即可</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">svg.append(&quot;g&quot;)</span><br><span class="line">            .selectAll(&quot;text&quot;)</span><br><span class="line">            .data(mapData)</span><br><span class="line">            .enter()</span><br><span class="line">            .append(&quot;text&quot;)</span><br><span class="line">            .text(function (d) &#123;</span><br><span class="line">                return d.properties.name.substr(0, 2</span><br><span class="line">            &#125;)</span><br><span class="line">            .attr(&quot;fill&quot;, &quot;#ffffff&quot;)</span><br><span class="line">            .attr(&quot;font-size&quot;, &quot;0.25rem&quot;););</span><br><span class="line">            &#125;)</span><br><span class="line">            .attr(&quot;x&quot;, function (d) &#123;</span><br><span class="line">                const local = projection(d.properties.center);</span><br><span class="line">                return local[0];</span><br><span class="line">            &#125;)</span><br><span class="line">            .attr(&quot;y&quot;, function (d) &#123;</span><br><span class="line">                const local = projection(d.properties.center);</span><br><span class="line">                return local[1];</span><br></pre></td></tr></table></figure>
+<p>效果图 <img src="/image/d3/map3.jpeg" alt="4"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>可以封装的再健壮些，比如增加是否显示文本flag，是否支持鼠标浮动展示flag、支持渐变色系等。</p>
+
+                <div style="margin-top:15px;">
+                   <hr class="nogutter">
+                   <h3>^-^欢迎回复交流^-^</h3>
+                    <div id="comment" class='cloudcomment'></div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+            <div class="bshare-custom" style="float: right;margin-bottom: 10px">
+                <div class="bsPromo bsPromo2"></div>
+                <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog" href="javascript:void(0);"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人人网" class="bshare-renren"></a>
+                <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+                <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+                <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
+            <div class="dashang">
+                <div class="title">赏点咖啡钱^.^</div>
+                <img src="/img/wchat.jpeg"/><img src="/img/zhifubao.png"/>
+            </div>
+            <div style="display: none;" id="rocket-to-top">
+                <div style="opacity:0.3;display: block;" class="level-2"></div>
+                <div class="level-3"></div>
+            </div>
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/reactjs/reactd3pie.html">
+        react项目中基于canvas实现环形图表 →
+    </a>
+    
+</nav>
+
+    </div>
+</section>
+
+<div id="qMenu" class="qmenu">
+    <div class="sb-close" aria-label="Close Menu" aria-hidden="true" onclick="javacript:void(0);$('#qMenu').hide();">
+        <img src="/img/close.png" alt="Close">
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8"
+        src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+<script src="../../js/av-min.js"></script>
+<script src="../../js/Valine.min.js"></script>
+<script src=''></script>
+<script type="text/javascript">
+    //// 小火箭
+    $(function () {
+        var e = $("#rocket-to-top"),
+                t = $(document).scrollTop(),
+                n,
+                r,
+                i = !0;
+        $(window).scroll(function () {
+            var t = $(document).scrollTop();
+            t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
+                        marginTop: "-1000px"
+                    },
+                    "normal",
+                    function () {
+                        e.css({
+                            "margin-top": "-125px",
+                            display: "none"
+                        }),
+                                i = !0
+                    })) : e.fadeIn("slow")
+        }),
+                e.hover(function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 1
+                            })
+                        },
+                        function () {
+                            $(".level-2").stop(!0).animate({
+                                opacity: 0
+                            })
+                        }),
+                $(".level-3").click(function () {
+                    function t() {
+                        var t = e.css("background-position");
+                        if (e.css("display") == "none" || i == 0) {
+                            clearInterval(n),
+                                    e.css("background-position", "0px 0px");
+                            return
+                        }
+                        switch (t) {
+                            case "0px 0px":
+                                e.css("background-position", "-298px 0px");
+                                break;
+                            case "-298px 0px":
+                                e.css("background-position", "-447px 0px");
+                                break;
+                            case "-447px 0px":
+                                e.css("background-position", "-596px 0px");
+                                break;
+                            case "-596px 0px":
+                                e.css("background-position", "-745px 0px");
+                                break;
+                            case "-745px 0px":
+                                e.css("background-position", "-298px 0px");
+                        }
+                    }
+
+                    if (!i) return;
+                    n = setInterval(t, 50),
+                            $("html,body").animate({scrollTop: 0}, "slow");
+                });
+    });
+
+
+    //// a 标签新页面打开
+    $("#content a").each(function () {
+        $(this).attr('target','_blank');
+        $(this).attr('style','color:#203ada;');
+    })
+
+</script>
+<script type="text/javascript">
+    new Valine({
+        el: '#comment' ,
+        notify:false, 
+        verify:false,   
+        appId: 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz',
+        appKey: 'Itbf11QmS5FNnX7UzEy72OQe',
+        placeholder: 'just go go',
+        path:window.location.pathname, 
+        avatar:'mm' 
+    });
+    //// 生成目录
+    function go(title) {
+        var top = $("#" + title).offset().top;
+        $(document).scrollTop(top - 60);
+    }
+    ;
+    var system = {
+        win: false,
+        mac: false,
+        xll: false,
+        ipad: false
+    };
+    //检测平台
+    var p = navigator.platform;
+    system.win = p.indexOf("Win") == 0;
+    system.mac = p.indexOf("Mac") == 0;
+    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+    system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false;
+    if ((system.win || system.mac || system.xll || system.ipad)) {
+        //document.writeln('PC')
+        $(function () {
+            var qMenu = '';
+            var title = '';
+            var obj;
+            $('#content').find('h2').each(function (index, item) {
+                obj = $(this).find('a.headerlink').eq(0);
+                title = obj.attr('title');
+                qMenu += '<div class="contenttitle" data="title" onclick="go(\'' + title + '\')">' + index + '、' + title + '</div>';
+            })
+            if (qMenu.length > 0) {
+                qMenu = ' <div><span>目录</span>' + qMenu + '</div>';
+                $('#qMenu').append($(qMenu));
+            }else {
+                $('#qMenu').remove();
+            }
+        });
+    } else {
+        $('#qMenu').remove();
+    }
+</script>
+
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+        <div class="copy">
+            <p>
+                <a target="_blank" href="//beian.miit.gov.cn/publish/query/indexFirst.action">蜀ICP备2020025890号-1</a>
+                &copy; 2017
+                <script>new Date().getFullYear() > 2010 && document.write("-" + new Date().getFullYear());</script>
+                , Content By ustbtaotao. All Rights Reserved.
+            </p>
+            <p>welcome to U &nbsp;&nbsp;&nbsp;&nbsp;i咖啡小屋里的咖啡被品尝<span style="color: red" id="totalcount">--</span>次</p>
+            <div class="guanzhu">
+                <div class="weixin">
+                    <span>关注微信</span>
+                    <img src="/img/weixin.jpg"/>
+                </div>
+                <div class="weibo">
+                    <span>关注微博</span>
+                    <img src="/img/weibo.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="social">
+            <ul>
+                
+                
+                
+                
+                
+                <li><a href="http://weibo.com/ustbtaotao" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;
+                </li>
+                
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?16ff0b4e8ca51c0734eb447a23473b9f";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?65e3e0b08038c3bdc07ecf223a4ae231";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+
+<!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+                window1 = $(window);
+        hero.css({
+            "height": window1.height() - 300
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<script src="/js/search.js"></script>
+<script src="/js/jquery.fancybox-1.3.1.pack.js"></script>
+<script type="text/javascript">
+    $('#intro').find('img').each(function () {
+        var alt = this.alt;
+
+        if (alt) {
+            $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+        }
+
+        $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+    });
+    jQuery(document).ready(function () {
+        jQuery('.fancybox').fancybox();
+    })
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        (function () {
+            console.log('font');
+            var getCss = function (path) {
+                var head = document.getElementsByTagName('head')[0];
+                link = document.createElement('link');
+                link.href = path;
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                head.appendChild(link);
+            };
+            getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+            getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+        })();
+        $('.flexslider').flexslider({
+            animation: "fade",
+            prevText: "",
+            nextText: "",
+            directionNav: true
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    var search_path = "db.json";
+    if (search_path.length == 0) {
+        search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $("#local-search-input").keydown(function (event) {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            searchFunc(path, 'local-search-input', 'local-search-result');
+        }
+    });
+    $("#local-search-input").keyup(function (event) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+    });
+    $("#navigation").click(function () {
+        $("#local-search-result").html('');
+        $("#local-search-result").hide();
+        $("#local-search-input").val('');
+    })
+</script>
+
+
+<!--统计-->
+<script src="//cdn1.lncld.net/static/js/2.5.0/av-min.js"></script>
+<script>
+    var APP_ID = 'Uxwf2V456s7ppITYyLu7dgLo-gzGzoHsz';
+    var APP_KEY = 'Itbf11QmS5FNnX7UzEy72OQe';
+    AV.init({
+        appId: APP_ID,
+        appKey: APP_KEY
+    });
+    function showTime(Counter) {
+        var query = new AV.Query("Counter");
+        if ($(".leancloud_visitors").length > 0) {
+            var url = $(".leancloud_visitors").attr('id').trim();
+            var postdate = $(".leancloud_visitors").attr('data_time').trim();
+            var time = new Date(postdate).getTime();
+            var init = 99;
+            if (time + 7 * 24 * 3600 * 1000 > new Date().getTime()) {
+                init = 1;
+            }
+            query.equalTo("words", url);
+            query.count().then(function (number) {
+                // There are number instances of MyClass.
+                $(document.getElementById(url)).text(number && !isNaN(number) ? init + number : '--');
+            }, function (error) {
+                // error is an instance of AVError.
+            });
+        }
+        query = new AV.Query("Counter");
+        query.count().then(function (number) {
+            // There are number instances of MyClass.
+            $(document.getElementById('totalcount')).text(number && !isNaN(number) ? 2220 + number : '--');
+        }, function (error) {
+            // error is an instance of AVError.
+        });
+    }
+
+    function addCount(Counter) {
+        var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'icafebolger.com';
+        var Counter = AV.Object.extend("Counter");
+        var query = new Counter;
+        query.save({
+            words: url
+        }).then(function (object) {
+
+        })
+    }
+    $(function () {
+        var Counter = AV.Object.extend("Counter");
+        addCount(Counter);
+        showTime(Counter);
+    });
+</script>
+</body>
+</html>
