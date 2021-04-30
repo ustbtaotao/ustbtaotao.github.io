@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -370,7 +374,7 @@
 <li><p>获取所有图片地址</p>
 <p> 爬虫的第一步，肯定的拿到我原来在七牛上传的所有图片的url地址,这个会点前端的难不倒。打开七牛网站，找到自己的<br> 空间，打开F12开发者工具,请求页面。分析后发现，图片是以分页的方式加载的，最终发现有个file的api，在response<br> 里很清楚的看到我的图片资源。就是它了，然后将右侧的response的json复制下来作为page1.json备用。<br> <img src="/image/hexo/qiniu1.png" alt="图0"><br> 后边的分页数据也是类似的方法，点击列表最后的加载更多，继续上述步骤，我这里总共有4页所有，最后拿到的资源就有<br> page1.json、page2.json、page3.json、page4.json </p>
 </li>
-<li><p>获取资源<br>这里我使用的是nodejs，原因是会且相对简单。建立一个小小的express项目，新建一个test.js,<br>核心就是利用<a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener">axios</a>和nodejs的fs文件模块，对文件进行下载<br>和保存。然后将上一步保存的json文件放到同一级目录下，方便读取。<br><img src="/image/hexo/qiniu2.png" alt="图1"><br>完整的爬虫项目可以Github上下载<a href="https://github.com/ustbtaotao/qiuniuimg.git" target="_blank" rel="noopener">拿走不谢</a></p>
+<li><p>获取资源<br>这里我使用的是nodejs，原因是会且相对简单。建立一个小小的express项目，新建一个test.js,<br>核心就是利用<a href="https://www.npmjs.com/package/axios" target="_blank" rel="external">axios</a>和nodejs的fs文件模块，对文件进行下载<br>和保存。然后将上一步保存的json文件放到同一级目录下，方便读取。<br><img src="/image/hexo/qiniu2.png" alt="图1"><br>完整的爬虫项目可以Github上下载<a href="https://github.com/ustbtaotao/qiuniuimg.git" target="_blank" rel="external">拿走不谢</a></p>
 </li>
 <li><p>七牛地址替换为本地地址<br>将原来七牛的测试域名全部替换为本站相对地址</p>
 </li>

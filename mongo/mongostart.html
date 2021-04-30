@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -368,11 +372,11 @@
                 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>mongodb快速搭建入门,以windows为例</p>
 <h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>关于mongodb的好处，优点之类的这里就不说了，唯一要讲的一点就是mongodb中有三元素：数据库，集合，文档，其中“集合”</p>
 <p>就是对应关系数据库中的“表”，“文档”对应“行”。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>进入官网[mongo]<a href="http://www.mongodb.org/downloads" target="_blank" rel="noopener">http://www.mongodb.org/downloads</a> 下载你所需要的版本按照官方指南进行安装<br>我们发现有32bit和64bit，这个就要看你系统了，不过这里有两点注意：</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>进入官网[mongo]<a href="http://www.mongodb.org/downloads" target="_blank" rel="external">http://www.mongodb.org/downloads</a> 下载你所需要的版本按照官方指南进行安装<br>我们发现有32bit和64bit，这个就要看你系统了，不过这里有两点注意：</p>
 <p>  ①：根据业界规则，偶数为“稳定版”（如：1.6.X，1.8.X），奇数为“开发版”（如：1.7.X，1.9.X)，这两个版本的区别相信大家都知道吧。</p>
 <p>  ②：32bit的mongodb最大只能存放2G的数据，64bit就没有限制。</p>
 <p>  我这里就下载”2.0.2版本，32bit“，ok，下载之后我就放到”E盘“，改下文件夹名字为”mongodb“。</p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>   ①：启动之前，我们要给mongodb指定一个文件夹，这里取名为”db”,用来存放mongodb的数据。<br>   <img src="/image/mongo/1.png" alt="mongo1"><br>   ②：微软徽标+R，输入cmd，首先找到“mongodb”的路径，然后运行mongod开启命令，同时用–dbpath指定数据存放地点为“db”文件夹。<br>    <img src="/image/mongo/2.png" alt="mongo2"><br>   ③：最后要看下是否开启成功，从图中的信息中获知，mongodb采用27017端口，那么我们就在浏览器里面键入“<a href="http://localhost:27017/”，" target="_blank" rel="noopener">http://localhost:27017/”，</a></p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>   ①：启动之前，我们要给mongodb指定一个文件夹，这里取名为”db”,用来存放mongodb的数据。<br>   <img src="/image/mongo/1.png" alt="mongo1"><br>   ②：微软徽标+R，输入cmd，首先找到“mongodb”的路径，然后运行mongod开启命令，同时用–dbpath指定数据存放地点为“db”文件夹。<br>    <img src="/image/mongo/2.png" alt="mongo2"><br>   ③：最后要看下是否开启成功，从图中的信息中获知，mongodb采用27017端口，那么我们就在浏览器里面键入“<a href="http://localhost:27017/”，" target="_blank" rel="external">http://localhost:27017/”，</a></p>
 <p>   打开后，mongodb告诉我们在27017上Add 1000可以用http模式查看mongodb的管理信息。<br>    <img src="/image/mongo/3.png" alt="mongo3"></p>
 <h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>  由于是开篇，就大概的说下基本的“增删查改“，我们再开一个cmd，输入mongo命令打开shell，其实这个shell就是mongodb的客户端，</p>
 <p>同时也是一个js的编译器，默认连接的是“test”数据库。</p>

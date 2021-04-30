@@ -130,7 +130,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -162,26 +162,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -199,6 +187,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -221,6 +213,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -238,6 +234,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -361,6 +365,44 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/kettle/kettle1.html">kettle实现异构数据同步(一)</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2017-11-21T02:08:43.000Z" itemprop="datePublished">
+          2017-11-21
+      </time>
+    
+    
+    
+    | 
+    <a href='/tags/kettle/'>kettle</a>
+    
+    
+    <br />
+    字数:<span class="post-count">420</span>
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        说明作为全栈开发工程或者DBA，往往会遇到数据同步的问题，有从excel同步到db的，有从mysql同步到oracle的，有从oracle同步到sqlserver的等等，其实我们都统称为异构数据同步，异构有可能是字段的异样，也有可能是数据库厂商的不同。按照传统思路，对于同一厂商的数据同步，可能还稍微简单点，一般都是导出文件，然后再导入文件。对于不同厂商的可能就更加麻烦一些。对于中间有逻辑处理的甚至可能还得写程序进行处理，费时费力。下图是
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/kettle/kettle1.html">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -802,44 +844,6 @@
                     
                     <p class="pull-right readMore">
                         <a href="/nodejs/nodeapidoc.html">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/html/htmlmiddle.html">css实现文字垂直居中</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2017-07-13T00:40:40.000Z" itemprop="datePublished">
-          2017-07-13
-      </time>
-    
-    
-    
-    | 
-    <a href='/tags/html/'>html</a>
-    
-    
-    <br />
-    字数:<span class="post-count">404</span>
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        说明UI可能如此设计:一行有多列数据,纯div span布局,非table布局,每一列为了自适应有的是一行文字,有的是多行文字,也就说高度不一致,蛋疼的要求是每一列还得水平垂直居中,水平好办,text-align,垂直怎么办呢?很多同学可能会说line-height,但是有个问题,你并不知道高度。你也可能会说我可以计算,但是像移动端手机宽度不一样,按照百分比拿到的每列宽度也不一样,但是字体大小又必须是UI设定的,那么问题来了,一行你放几
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/html/htmlmiddle.html">Read More...</a>
                     </p>
                     
                 </div>

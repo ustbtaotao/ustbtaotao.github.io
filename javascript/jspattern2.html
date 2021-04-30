@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -365,7 +369,7 @@
                 <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
                 <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
             <div style="margin-top: 10px;" id="content">
-                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>最近项目中遇到了一个实例，需要将字符串中的特定字符，替代成img标签，即表情以html的方式展示在前端。<br>数据返回的字符串形如<code>aaaa#E-s01ffff#E-s02ddd#E-s21</code>其中#E-s01为要替换的表情字符，<br>需要替换为<code>&lt;\img style=”width:25px;height:25px” src=”<a href="http://xxx.example.com/im_smart/images/express/base/s21.png&quot;" target="_blank" rel="noopener">http://xxx.example.com/im_smart/images/express/base/s21.png&quot;</a> /&gt;</code><br>该如何做呢？</p>
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>最近项目中遇到了一个实例，需要将字符串中的特定字符，替代成img标签，即表情以html的方式展示在前端。<br>数据返回的字符串形如<code>aaaa#E-s01ffff#E-s02ddd#E-s21</code>其中#E-s01为要替换的表情字符，<br>需要替换为<code>&lt;\img style=”width:25px;height:25px” src=”<a href="http://xxx.example.com/im_smart/images/express/base/s21.png&quot;" target="_blank" rel="external">http://xxx.example.com/im_smart/images/express/base/s21.png&quot;</a> /&gt;</code><br>该如何做呢？</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们首先想到的肯定是正则表达式，第一步我们要把所有的#E-s01表情字符找出来，抽象成正则表达式就是 #E-s\d{2},这样是能匹配出来，<br>但是有个问题，在第二步，我们需要将sxx部分动态的拼接在img标签的src属性上，这时候就有点爱莫能助了。那么该怎么办呢，大家都知道<br>js正则有分组的概念，所有我们将#E-s01分组成 #E-s01(\d{2})即可，为了匹配大小写和全局，最终的表达式为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const reg = new RegExp(/#E-s(\d&#123;2&#125;)/ig);</span><br></pre></td></tr></table></figure></p>
 <p>接下来就是正则替换了，用string.replace即可；<br>具体实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let html = &apos;aaaa#E-s01ffff#E-s02ddd#E-s21&apos;;</span><br><span class="line">const reg = new RegExp(/#E-s(\d&#123;2&#125;)/ig);</span><br><span class="line">console.time(&apos;match&apos;);</span><br><span class="line">let temp = html.match(reg);</span><br><span class="line">temp.forEach((v)=&gt;&#123;</span><br><span class="line">    html = html.replace(v,&apos;&lt;img style=&quot;width:25px;height:25px&quot; src=&quot;http://xxx.example.com/im_smart/images/express/base/s&apos;+v.replace(&apos;#E-s&apos;,&apos;&apos;)+&apos;.png&quot; /&gt;&apos;)</span><br><span class="line">&#125;);</span><br><span class="line">console.log(html)</span><br><span class="line">console.timeEnd(&apos;match&apos;);</span><br></pre></td></tr></table></figure></p>
 <p>输出结果为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aaaa&lt;img style=&quot;width:25px;height:25px&quot; src=&quot;http://xxx.example.com/im_smart/images/express/base/s01.png&quot; /&gt;</span><br><span class="line">ffff&lt;img style=&quot;width:25px;height:25px&quot; src=&quot;http://xxx.example.com/im_smart/images/express/base/s02.png&quot; /&gt;</span><br><span class="line">ddd&lt;img style=&quot;width:25px;height:25px&quot; src=&quot;http://xxx.example.com/im_smart/images/express/base/s21.png&quot; /&gt;</span><br><span class="line">match: 2.113ms</span><br></pre></td></tr></table></figure></p>
@@ -409,13 +413,13 @@
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/git/git.html" style="float: left;">
-        ← git常用命令
+    <a class="pull-left" href="/reactjs/reactwebpack2.html" style="float: left;">
+        ← react项目 webpack 3.x打包效率提升记
     </a>
     
     
-    <a class="pull-right" href="/nodejs/nodehapi1.html">
-        nodejs hapi(一) server →
+    <a class="pull-right" href="/git/git.html">
+        git常用命令 →
     </a>
     
 </nav>

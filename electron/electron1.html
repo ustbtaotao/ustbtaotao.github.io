@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -346,7 +350,7 @@
     
     
     <br />
-    字数:<span class="post-count">370</span>
+    字数:<span class="post-count">394</span>
 </span>
                 阅读数:
                 <span id="/electron/electron1.html" data_time="Fri Dec 20 2019 11:15:45 GMT+0800" class="leancloud_visitors" data-flag-title="electron 实践"></span>次
@@ -365,8 +369,8 @@
                 <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
                 <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
             <div style="margin-top: 10px;" id="content">
-                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>electron为全栈工程师开发桌面程序提供了可能，页面可以用任何姿势进行构建：jquery、react、vue等等，然后打包成应用程序。<br>但是有时候我们会集成一些已有的页面或者第三方页面进来。<a href="https://electronjs.org/docs/api/webview-tag" target="_blank" rel="noopener">webview</a>可以<br>解决这个问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;webview src=&quot;&quot; httpreferrer=&quot;&quot; style=&quot;height: 100vh;width: 100vw;&quot; id=&quot;chat-frame&quot; plugins disablewebsecurity=&quot;on&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/webview&gt;</span><br></pre></td></tr></table></figure></p>
-<p>但是会发现一个问题，如果引用的页面需要打开一个页面（_blank,_self）时，并没有任何反应，是因为第三方页面和electron本身不是一个体系，没法<br>直接进行通信。我们可以再<code>webview</code>上追加一个属性<a href="https://electronjs.org/docs/api/webview-tag#nodeintegration" target="_blank" rel="noopener">nodeintegration</a>,<br>该属性可以让webview 中的访客页（guest page）将具有Node集成, 并且可以使用像 require 和 process 这样的node APIs 去访问低层系统资源。<br>这样如果我们用的<figure class="highlight plain"><figcaption><span>href</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">那我们把target改成_blank 或者用window.open 就又打不开了</span><br><span class="line"></span><br><span class="line">解决思路也简单</span><br><span class="line">* 方案一:第三方告诉主页面我要打开一个新页面</span><br><span class="line">* 方案二：主页面自动监听是否需要开新页面</span><br><span class="line"> 方案一设置到第三方页面的改动，不太现实；那只能方案二</span><br><span class="line"> &lt;code&gt;webview&lt;/code&gt;会监听 new-window 事件，然后通过sheel打开,但也要配置&lt;code&gt;nodeintegration&lt;/code&gt;,否则也会失效</span><br></pre></td></tr></table></figure></p>
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>electron为全栈工程师开发桌面程序提供了可能，页面可以用任何姿势进行构建：jquery、react、vue等等，然后打包成应用程序。<br>但是有时候我们会集成一些已有的页面或者第三方页面进来。<a href="https://electronjs.org/docs/api/webview-tag" target="_blank" rel="external">webview</a>可以<br>解决这个问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;webview src=&quot;&quot; httpreferrer=&quot;&quot; style=&quot;height: 100vh;width: 100vw;&quot; id=&quot;chat-frame&quot; plugins disablewebsecurity=&quot;on&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/webview&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是会发现一个问题，如果引用的页面需要打开一个页面（_blank,_self）时，并没有任何反应，是因为第三方页面和electron本身不是一个体系，没法<br>直接进行通信。我们可以再<code>webview</code>上追加一个属性<a href="https://electronjs.org/docs/api/webview-tag#nodeintegration" target="_blank" rel="external">nodeintegration</a>,<br>该属性可以让webview 中的访客页（guest page）将具有Node集成, 并且可以使用像 require 和 process 这样的node APIs 去访问低层系统资源。<br>这样如果我们用的<figure class="highlight plain"><figcaption><span>href="other page">```标签 target="_self" 效果就是在本桌面程序里打开这个页面。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">那我们把target改成_blank 或者用window.open 就又打不开了</span><br><span class="line"></span><br><span class="line">解决思路也简单</span><br><span class="line">* 方案一:第三方告诉主页面我要打开一个新页面</span><br><span class="line">* 方案二：主页面自动监听是否需要开新页面</span><br><span class="line"> 方案一设置到第三方页面的改动，不太现实；那只能方案二</span><br><span class="line"> &lt;code&gt;webview&lt;/code&gt;会监听 new-window 事件，然后通过sheel打开,但也要配置&lt;code&gt;nodeintegration&lt;/code&gt;,否则也会失效</span><br></pre></td></tr></table></figure></p>
 <p>const webview = document.querySelector(‘webview’);<br>    webview.addEventListener(‘new-window’, (event) =&gt; {<br>        const url = event.url;<br>        url.startsWith(‘http’) &amp;&amp; shell.openExternal(url);<br>    })<br><code>`</code></p>
 
                 <div style="margin-top:15px;">

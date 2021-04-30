@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -368,7 +372,7 @@
                 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>今天谈谈kettle数据同步之数据连接，</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>对于主流的mysql,oracal,sqlserver kettle都是支持连接的，当然连接的前提是必须要有<br>相应的数据驱动，mysql-connector-java-5.1.21-bin.jar;ojdbc6.jar;路径可以是：<br>输入－表输入－新建，在弹出的配置页面填写即可</p>
 <p><img src="/image/kettle/kettle30.jpeg" alt="kettle30"></p>
-<p>1、oracle配置实例，连接方式选择jdbc<br><img src="/image/kettle/kettle31.jpeg" alt="kettle31"><br>这里需要注意，红色的部分都是必须要填写的。数据库配置的需要要小心坑，需要区分oracle提供的是SID还是服务名，如果是SID直接填写SID名称；如果是服务名则需要填写<code>/服务名</code>，<br>对于参数配置，我们去 <a href="https://docs.oracle.com/cd/B19306_01/java.102/b14355/urls.htm#i1006362" target="_blank" rel="noopener">oracle官方</a>看看，比如像预加载，是否使用压缩对于数据提取速率的提升是很显著的。<br><img src="/image/kettle/kettle34.jpeg" alt="kettle34"><br>2、mysql配置实例，连接方式选择jdbc<br><img src="/image/kettle/kettle32.jpeg" alt="kettle32"><br>红色的部分都是必须要填写的。<br>对于参数配置，我们去mysql官方看看，比如是否批量执行，是否使用压缩对于数据提取速率的提升是很显著的。<br><img src="/image/kettle/kettle33.jpeg" alt="kettle33"><br>连接池，我们一般默认就好，但是如果遇到报错或者数据量比较大的情况导致表锁了，或者占用的连接池没释放的时候。我们需要设置maxWait为一个具体值，比如10，The maximum number of milliseconds that the pool will wait (when there are no available connections) for a connection to be returned before throwing an exception, or -1 to wait indefinitely.意思就是在异常后10ms释放连接，如果默认就是一直等待，白白浪费资源。<br>3、sqlserver<br>基本同上，参数也可以去官网查阅。</p>
+<p>1、oracle配置实例，连接方式选择jdbc<br><img src="/image/kettle/kettle31.jpeg" alt="kettle31"><br>这里需要注意，红色的部分都是必须要填写的。数据库配置的需要要小心坑，需要区分oracle提供的是SID还是服务名，如果是SID直接填写SID名称；如果是服务名则需要填写<code>/服务名</code>，<br>对于参数配置，我们去 <a href="https://docs.oracle.com/cd/B19306_01/java.102/b14355/urls.htm#i1006362" target="_blank" rel="external">oracle官方</a>看看，比如像预加载，是否使用压缩对于数据提取速率的提升是很显著的。<br><img src="/image/kettle/kettle34.jpeg" alt="kettle34"><br>2、mysql配置实例，连接方式选择jdbc<br><img src="/image/kettle/kettle32.jpeg" alt="kettle32"><br>红色的部分都是必须要填写的。<br>对于参数配置，我们去mysql官方看看，比如是否批量执行，是否使用压缩对于数据提取速率的提升是很显著的。<br><img src="/image/kettle/kettle33.jpeg" alt="kettle33"><br>连接池，我们一般默认就好，但是如果遇到报错或者数据量比较大的情况导致表锁了，或者占用的连接池没释放的时候。我们需要设置maxWait为一个具体值，比如10，The maximum number of milliseconds that the pool will wait (when there are no available connections) for a connection to be returned before throwing an exception, or -1 to wait indefinitely.意思就是在异常后10ms释放连接，如果默认就是一直等待，白白浪费资源。<br>3、sqlserver<br>基本同上，参数也可以去官网查阅。</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>未完待续</p>
 
                 <div style="margin-top:15px;">

@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -368,9 +372,9 @@
                 <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
             <div style="margin-top: 10px;" id="content">
                 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>nodejs作为服务端api开发语言已经不是什么稀奇的事情了，今天分享的不是怎么利用express<br>进行api封装，而是怎么利用middleware中间件对api接口进行签名验证。为什么要做签名验证，<br>原因很简单就是为了安全。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>大家都知道express route可以很灵活的加入一些中间件包括我们自定义的，今天要实现的数字签名<br>验证需要依赖<a href="https://www.npmjs.com/package/passport-digital-signature" target="_blank" rel="noopener">passport-digital-signature</a>进行二次开发。<br>签名逻辑说明：对每个api请求必须要求传入时间戳timestamp、keyId和数字签名值sign。其中<br>sign签名规则为：</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>大家都知道express route可以很灵活的加入一些中间件包括我们自定义的，今天要实现的数字签名<br>验证需要依赖<a href="https://www.npmjs.com/package/passport-digital-signature" target="_blank" rel="external">passport-digital-signature</a>进行二次开发。<br>签名逻辑说明：对每个api请求必须要求传入时间戳timestamp、keyId和数字签名值sign。其中<br>sign签名规则为：</p>
 <h3 id="第一步："><a href="#第一步：" class="headerlink" title="第一步："></a>第一步：</h3><p>设所有发送或者接收到的数据为集合M，将集合M内非空参数值的参数按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&amp;key2=value2…）拼接成字符串stringA。<br>特别注意以下重要规则：</p>
-<p>参数名按ASCII码从小到大排序（字典序）；<br>如果参数的值为空不参与传参和签名；<br>参数名区分大小写；<br>get 和 post 参数均参与签名（注意：签名时不要对 get 和 post 的参数进行urlencode）；<br>sign 参数不参与签名；<br>根据HTTP协议要求，传递参数的值中如果存在特殊字符（如：&amp;、@等），那么该值需要做URL Encoding，这样请求接收方才能接收到正确的参数值。这种情况下，待签名数据应该是原始值而不是encoding之后的值。例如：调用某接口需要对请求参数email进行数字签名，那么待签名数据应该是<a href="mailto:email=test@msn.com" target="_blank" rel="noopener">email=test@msn.com</a>，而不是email=test%40msn.com。</p>
+<p>参数名按ASCII码从小到大排序（字典序）；<br>如果参数的值为空不参与传参和签名；<br>参数名区分大小写；<br>get 和 post 参数均参与签名（注意：签名时不要对 get 和 post 的参数进行urlencode）；<br>sign 参数不参与签名；<br>根据HTTP协议要求，传递参数的值中如果存在特殊字符（如：&amp;、@等），那么该值需要做URL Encoding，这样请求接收方才能接收到正确的参数值。这种情况下，待签名数据应该是原始值而不是encoding之后的值。例如：调用某接口需要对请求参数email进行数字签名，那么待签名数据应该是<a href="mailto:email=test@msn.com" target="_blank" rel="external">email=test@msn.com</a>，而不是email=test%40msn.com。</p>
 <h3 id="第二步："><a href="#第二步：" class="headerlink" title="第二步："></a>第二步：</h3><p>在stringA最后拼接上“&amp;key=AppSecret”得到stringSignTemp字符串，并对stringSignTemp进行MD5运算，再将得到的字符串所有字符转换为大写，得到sign值。</p>
 <h3 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h3><p>拼接sign签名，得到最终请求字符串。</p>
 <p>具体实现步骤：</p>

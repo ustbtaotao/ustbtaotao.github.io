@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -367,7 +371,7 @@
                 <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
                 <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
             <div style="margin-top: 10px;" id="content">
-                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>熟悉jquery jquery UI的童鞋们都知道,要实现模版式瀑布流很简单,有好多现成的成熟的插件,<br>得来全不费功夫,直接根据文档上手套用即可。那么问题来了,我们这是react项目,虽说可以应用jquery,<br>但是不到万不得已还是不印的好,因为会有你想不到的坑等着你,毕竟jquery和react原理是不相同的。<br>经过项目实践积累,发现了一款比较好用且操作简单的插件:<a href="https://www.npmjs.com/package/react-masonry-component" target="_blank" rel="noopener">react-masonry-component(5.0.3)</a></p>
+                <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>熟悉jquery jquery UI的童鞋们都知道,要实现模版式瀑布流很简单,有好多现成的成熟的插件,<br>得来全不费功夫,直接根据文档上手套用即可。那么问题来了,我们这是react项目,虽说可以应用jquery,<br>但是不到万不得已还是不印的好,因为会有你想不到的坑等着你,毕竟jquery和react原理是不相同的。<br>经过项目实践积累,发现了一款比较好用且操作简单的插件:<a href="https://www.npmjs.com/package/react-masonry-component" target="_blank" rel="external">react-masonry-component(5.0.3)</a></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="定义模版-即瀑布流中每个item的布局样式等"><a href="#定义模版-即瀑布流中每个item的布局样式等" class="headerlink" title="定义模版,即瀑布流中每个item的布局样式等"></a>定义模版,即瀑布流中每个item的布局样式等</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">let lstItem = (item, index)=&gt; &#123;</span><br><span class="line">      let rand = random.number(1) % 2;</span><br><span class="line">      return (</span><br><span class="line">        &lt;div key=&#123;item.detailid&#125;</span><br><span class="line">             className=&quot;item_left&quot;&gt;</span><br><span class="line">          &lt;h1&gt;&#123;item.name&#125;&lt;/h1&gt;</span><br><span class="line">          &lt;p&gt;&#123;item.descs&#125;&lt;/p&gt;</span><br><span class="line">          &lt;div className=&#123;&apos;item_img &apos; + (rand === 0 ? &apos;imgframe&apos; : &apos;imgframe1&apos;)&#125;&gt;</span><br><span class="line">            &lt;img</span><br><span class="line">              src=&#123;  (item.pictrue ? item.pictrue : default_pic_1)&#125;</span><br><span class="line">              alt=&quot;&quot;/&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="引入瀑布流插件"><a href="#引入瀑布流插件" class="headerlink" title="引入瀑布流插件"></a>引入瀑布流插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Masonry</span><br><span class="line">         className=&#123;&apos;my-gallery-class&apos;&#125; // default &apos;&apos;</span><br><span class="line">         elementType=&#123;&apos;div&apos;&#125; // default &apos;div&apos;</span><br><span class="line">         options=&#123;&#123;transitionDuration: 5, transitionProperty: &apos;width&apos;&#125;&#125; // default &#123;&#125;</span><br><span class="line">         disableImagesLoaded=&#123;false&#125; // default false</span><br><span class="line">         updateOnEachImageLoad=&#123;false&#125; // default false and works only if disableImagesLoaded is false</span><br><span class="line">       &gt;</span><br><span class="line">         &#123;data.map(lstItem);&#125;</span><br><span class="line">&lt;/Masonry&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="so-easy"><a href="#so-easy" class="headerlink" title="so easy"></a>so easy</h3><p> <img src="/image/react/liu.jpeg" alt="瀑布流"></p>

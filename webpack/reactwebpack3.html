@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -366,7 +370,7 @@
                 <span class="BSHARE_COUNT bshare-share-count" style="float: none;">0</span></div>
             <div style="margin-top: 10px;" id="content">
                 <p>熟悉前端开发的小伙伴，可能会经常遇到代码模块化，代码复用的问题。通常的做法比如es6项目中export，然后import，<br>cmd项目中 module.exports 然后require。比如跨项目的话我们可以用node npm发布一个node_module到npm库。<br>这里介绍一种更通用的方法。</p>
-<p>借助<a href="https://webpack.docschina.org/configuration/output/#outputlibrary" target="_blank" rel="noopener">webpack output 打包模块化组件</a>可以方便的实现，</p>
+<p>借助<a href="https://webpack.docschina.org/configuration/output/#outputlibrary" target="_blank" rel="external">webpack output 打包模块化组件</a>可以方便的实现，</p>
 <h2 id="demo走起"><a href="#demo走起" class="headerlink" title="demo走起"></a>demo走起</h2><p>我们先typescript写个公共模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">umd.tsx</span><br><span class="line">-------</span><br><span class="line">function initUmd()&#123;</span><br><span class="line">    console.log(&apos;it is init&apos;);</span><br><span class="line">    return &apos;back it is init&apos;;</span><br><span class="line">&#125;</span><br><span class="line">const umdTest = &#123;</span><br><span class="line">    constUmd: &quot;constUmd&quot;,</span><br><span class="line">    initUmd</span><br><span class="line">&#125;</span><br><span class="line">export default umdTest;</span><br></pre></td></tr></table></figure></p>
 <p>功能很简单，一个公共变量constUmd，一个公共方法initUmd；<br>然后我们要在别的项目中使用怎么破？</p>
 <h2 id="webpack-配置"><a href="#webpack-配置" class="headerlink" title="webpack 配置"></a>webpack 配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">webpack.config.umd.js</span><br><span class="line">------</span><br><span class="line">const path = require(&quot;path&quot;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    mode:&quot;development&quot;,</span><br><span class="line">    entry: &quot;./src/umd.tsx&quot;,</span><br><span class="line">    resolve: &#123;</span><br><span class="line">        extensions: [&quot;.ts&quot;, &quot;.tsx&quot;, &quot;.js&quot;, &quot;.json&quot;],</span><br><span class="line">    &#125;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        library: &quot;umdTest&quot;,</span><br><span class="line">        libraryTarget:&quot;umd&quot;,</span><br><span class="line">        path: path.resolve(__dirname,&apos;dist&apos;),</span><br><span class="line">        filename: &apos;umdTest.js&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            &#123; test: /\.(tsx|ts)?$/, loader: &quot;awesome-typescript-loader&quot; &#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>

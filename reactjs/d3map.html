@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -339,8 +343,6 @@
           2020-10-10
       </time>
     
-       <img src="/img/new.png" style="display: block" class="new"/>
-     
     
     
     | 
@@ -373,7 +375,7 @@
             <div style="margin-top: 10px;" id="content">
                 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>最近项目需要按照中国地图区域进行展示数据，按照颜色的深浅来表示实际数据的大小，并且在鼠标浮动的时候显示具体的省份名称和其数量，<br>搜寻了一圈 hightchart, echart, viser,bizchart 均不能满足产品的需要，只能自己搞了。先看下效果：</p>
 <p>效果图如下<br> <img src="/image/d3/map.jpeg" alt="0"></p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>1、基石：我们选择d3.js 为我们提供了强大的svg画图功能<br>2、地图数据: 寻寻觅觅发现一款工具<a href="http://datav.aliyun.com/tools/atlas/#&amp;lat=31.840232667909365&amp;lng=104.32617187499999&amp;zoom=4" target="_blank" rel="noopener">datav</a>，<br>   可以快速的导出我们想要的区域地图的geojson结构<br>3、实际业务数据的映射<br>4、鼠标浮动的交互</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>1、基石：我们选择d3.js 为我们提供了强大的svg画图功能<br>2、地图数据: 寻寻觅觅发现一款工具<a href="http://datav.aliyun.com/tools/atlas/#&amp;lat=31.840232667909365&amp;lng=104.32617187499999&amp;zoom=4" target="_blank" rel="external">datav</a>，<br>   可以快速的导出我们想要的区域地图的geojson结构<br>3、实际业务数据的映射<br>4、鼠标浮动的交互</p>
 <hr>
 <p>先画地图，画地图之前我们先看下geojson的结构，<br>由于下载下来的geojson中，南海群岛是和整体地图纵向排列的，而产品实际需要将其展示在地图的左侧：哭！。于是乎曲线救国，发现群岛的数据<br>中<code>properties.name</code>为空，以及最外侧的虚线是在海南省path[0]以为的数据中。发现了其path路径就好办了，先画整体地图，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mapData = ChinaJson.features.filter((m) =&gt; m.properties.name);</span><br><span class="line">mapData = mapData.map((item) =&gt; &#123;</span><br><span class="line">    if (item.properties.name === &quot;海南省&quot;) &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            ...item,</span><br><span class="line">            geometry: &#123;</span><br><span class="line">                ...item.geometry,</span><br><span class="line">                coordinates: [item.geometry.coordinates[0]],</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;</span><br><span class="line">        ...item,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>过滤出除南海群岛以外的json数据，同理画左侧南海群岛的时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ChinaJson.features.filter((m) =&gt; m.properties.name === &quot;海南省&quot; || !m.properties.name)</span><br></pre></td></tr></table></figure></p>
@@ -443,6 +445,10 @@
             </div>
         </div>
         <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/reactjs/reactggeditor.html" style="float: left;">
+        ← react项目gg-editor2.x 最佳实践
+    </a>
     
     
     <a class="pull-right" href="/reactjs/reactd3pie.html">

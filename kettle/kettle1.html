@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -367,7 +371,7 @@
             <div style="margin-top: 10px;" id="content">
                 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>作为全栈开发工程或者DBA，往往会遇到数据同步的问题，有从excel同步到db的，有从mysql同步到<br>oracle的，有从oracle同步到sqlserver的等等，其实我们都统称为异构数据同步，异构有可能是字段<br>的异样，也有可能是数据库厂商的不同。按照传统思路，对于同一厂商的数据同步，可能还稍微简单点，一般都是导出文件，然后再导入文件。对于不同厂商的可能就更加麻烦一些。对于中间有逻辑处理的甚至可能还得写程序进行处理，费时费力。下图是传统我们数据同步的思路和方法。<br><img src="/image/kettle/kettle1.jpeg" alt="kettle1"></p>
 <p>今天我要给大家介绍异构数据同步神器kettle</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kettle是一款国外开源的ETL工具，纯java编写，可以在Window、Linux、Unix上运行，数据抽取高效稳定。分社区版本和企业版本，对于我们日常开发社区版本够用了。感兴趣的可以去<a href="https://community.hds.com/docs/DOC-1009855" target="_blank" rel="noopener">官网</a>进行下载，正常下载下来，解压就行。如果要在本地运行，请先安卓java环境。然后点击Data Integration.app进行启动（MAC环境，其他环境请自行查找）</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kettle是一款国外开源的ETL工具，纯java编写，可以在Window、Linux、Unix上运行，数据抽取高效稳定。分社区版本和企业版本，对于我们日常开发社区版本够用了。感兴趣的可以去<a href="https://community.hds.com/docs/DOC-1009855" target="_blank" rel="external">官网</a>进行下载，正常下载下来，解压就行。如果要在本地运行，请先安卓java环境。然后点击Data Integration.app进行启动（MAC环境，其他环境请自行查找）</p>
 <h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><p>Kettle主要由Spoon、Pan、CHEF、Kitchen四块组成：</p>
 <p>spoon : 提供了一个图形化界面，方便我们进行业务逻辑实现<br><img src="/image/kettle/kettle2.jpeg" alt="kettle2"><br>pan: 用来执行转换(.ktr)<br>CHEF 允许你创建任务（Job）<br>Kitchen: 用来执行作业(.kjb)</p>
 <h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><p>可以在Window、Linux、Unix上运行，数据抽取高效稳定，编写一份脚步，可在多地跨平台运行</p>

@@ -132,7 +132,7 @@
                     </a></li>
                 
                 <li><a href="/categories/reactjs/" class="animsition-link">reactjs
-                        <small>(28)</small>
+                        <small>(29)</small>
                     </a></li>
                 
                 <li><a href="/categories/svn/" class="animsition-link">svn
@@ -164,26 +164,14 @@
             <ul class="sb-submenu">
                 
                 <li><a href="/tags/reactjs/" class="animsition-link">reactjs
-                        <small>(29)</small>
+                        <small>(30)</small>
                     </a></li>
                 
                 <li><a href="/tags/component/" class="animsition-link">组件
                         <small>(5)</small>
                     </a></li>
                 
-                <li><a href="/tags/javascript/" class="animsition-link">javascript
-                        <small>(24)</small>
-                    </a></li>
-                
-                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
-                        <small>(1)</small>
-                    </a></li>
-                
                 <li><a href="/tags/electron/" class="animsition-link">electron
-                        <small>(1)</small>
-                    </a></li>
-                
-                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -201,6 +189,10 @@
                 
                 <li><a href="/tags/html/" class="animsition-link">html
                         <small>(3)</small>
+                    </a></li>
+                
+                <li><a href="/tags/javascript/" class="animsition-link">javascript
+                        <small>(25)</small>
                     </a></li>
                 
                 <li><a href="/tags/kettle/" class="animsition-link">kettle
@@ -223,6 +215,10 @@
                         <small>(1)</small>
                     </a></li>
                 
+                <li><a href="/tags/gg-editor/" class="animsition-link">gg-editor
+                        <small>(1)</small>
+                    </a></li>
+                
                 <li><a href="/tags/highchart/" class="animsition-link">highchart
                         <small>(3)</small>
                     </a></li>
@@ -240,6 +236,14 @@
                     </a></li>
                 
                 <li><a href="/tags/server/" class="animsition-link">服务
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/d3-js/" class="animsition-link">d3.js
+                        <small>(1)</small>
+                    </a></li>
+                
+                <li><a href="/tags/es6/" class="animsition-link">es6
                         <small>(1)</small>
                     </a></li>
                 
@@ -370,7 +374,7 @@
 <li>server response timeout<br>nodejs express框架，router可以灵活的设置一个或者多个中间价，比如常见的auth，passport，ratelimit以及现在要说的timeout等等。比如路由</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.post(&apos;/hello&apos;, function (req, res, next) &#123;</span><br><span class="line"> res.send(&apos;world&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>一个的post请求，我们想要的效果是5s内server res timetou，那么自然想到的是express中间价，这里我用的是<br><code><a href="https://www.npmjs.com/package/connect-timeout" target="_blank" rel="noopener">connect-timeout</a></code> 就可以轻松的实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import timeout from &apos;connect-timeout&apos;;</span><br><span class="line"> router.post(&apos;/hello&apos;, timeout(5s), function (req, res, next) &#123;</span><br><span class="line">  setTimeout(() =&gt;&#123;</span><br><span class="line">     res.send(&apos;world&apos;);</span><br><span class="line">    &#125;,6*1000);  //模拟业务处理需要6s</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>一个的post请求，我们想要的效果是5s内server res timetou，那么自然想到的是express中间价，这里我用的是<br><code><a href="https://www.npmjs.com/package/connect-timeout" target="_blank" rel="external">connect-timeout</a></code> 就可以轻松的实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import timeout from &apos;connect-timeout&apos;;</span><br><span class="line"> router.post(&apos;/hello&apos;, timeout(5s), function (req, res, next) &#123;</span><br><span class="line">  setTimeout(() =&gt;&#123;</span><br><span class="line">     res.send(&apos;world&apos;);</span><br><span class="line">    &#125;,6*1000);  //模拟业务处理需要6s</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure></p>
 <p>然后我们可以用postman或者restclient工具进行模拟请求，发现5s的时候客户端会返回timeout</p>
 <ul>
 <li>server timeout<br>上面的业务需要6s，比如是非常耗时的处理需要3min（当然如果是这样就不建议http同步处理了，最好采用异步处理的方式），但为了测试timeout，我们还是鲁莽一次。这次不设置server res timeout<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.post(&apos;/hello&apos;, function (req, res, next) &#123;</span><br><span class="line"> setTimeout(() =&gt;&#123;</span><br><span class="line">    res.send(&apos;world&apos;);</span><br><span class="line">   &#125;,3*60*1000);  //模拟业务处理需要3min</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
